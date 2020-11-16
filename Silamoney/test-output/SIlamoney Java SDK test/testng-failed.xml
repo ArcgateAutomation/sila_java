@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [SIlamoney Java SDK test]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="API(failed)">
+    <classes>
+      <class name="Testing.CheckKYC">
+        <methods>
+          <include name="getResult"/>
+          <include name="check_kyc_with_unregistered_user_handle"/>
+          <include name="StartTest"/>
+          <include name="check_kyc_with_invalid_invalid_signature"/>
+          <include name="check_kyc_with_not_requested_kyc_user_handle"/>
+          <include name="edntest"/>
+          <include name="check_kyc_with_empty_user_handle"/>
+          <include name="SetUp"/>
+          <include name="CloseClass"/>
+          <include name="check_kyc_verification_pending"/>
+          <include name="TearDown"/>
+          <include name="check_kyc_verification_successfully_passed"/>
+          <include name="StartClass"/>
+        </methods>
+      </class> <!-- Testing.CheckKYC -->
+      <class name="Testing.RequestKYC">
+        <methods>
+          <include name="getResult"/>
+          <include name="TearDown"/>
+          <include name="Request_KYC_Without_kyc_level_entity"/>
+          <include name="StartTest"/>
+          <include name="StartClass"/>
+          <include name="edntest"/>
+          <include name="SetUp"/>
+          <include name="CloseClass"/>
+        </methods>
+      </class> <!-- Testing.RequestKYC -->
+    </classes>
+  </test> <!-- API(failed) -->
+</suite> <!-- Failed suite [SIlamoney Java SDK test] -->
