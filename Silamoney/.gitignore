@@ -1,1 +1,16 @@
-/target/
+/allure-results
+/reports
+/TestData
+/allure-report
+*.log
+
+
+# Environments
+.env
+.venv
+.idea
+
+
+# Hidden JSON files
+.*.json
+.vscode/
