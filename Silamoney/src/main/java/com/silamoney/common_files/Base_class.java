@@ -66,7 +66,7 @@ public class Base_class extends ValidationData{
 	public static DateFormat TimeFormat3 = new SimpleDateFormat("yyyyMdHH");
 	public static String DateNTime1 = TimeFormat3.format(new Date()).toString();
 
-	static String RandaomValue="f";
+	static String RandaomValue="g";
 	public static String Handle_1 =RandaomValue+"b"+DateNTime1;
 	public static String handle1 =Handle_1+".silamoney.eth";
 	

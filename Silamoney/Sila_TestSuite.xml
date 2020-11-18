@@ -13,6 +13,7 @@
 		    <class name="sila_test_cases.Link_account"/>  
 		    <class name="sila_test_cases.Register_add_registration_data"/> 
 			<class name="sila_test_cases.Register_update_registration_data"/> 
+			<class name="sila_test_cases.Register_delete_registration_data"/> 
 		</classes>
 	</test>
 	
