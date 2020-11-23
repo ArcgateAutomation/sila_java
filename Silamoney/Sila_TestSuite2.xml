@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name="Silamoney Java SDK "> 
+
+	<test name="API">
+		<classes>    
+			<class name="dummyTestcases.Register"/>
+			<class name="dummyTestcases.Request_kyc"/>  
+		    <class name="dummyTestcases.Link_account"/>  
+			<class name="dummyTestcases.Get_account"/> 
+			
+		</classes>
+	</test>
+	
+
+ 
+		
+</suite>
+	
