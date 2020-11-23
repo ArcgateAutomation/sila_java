@@ -24,9 +24,11 @@ public class Request_kyc extends Base_class {
 	@Test(priority=1)
 	@Description("Request KYC without kyc_level entity")
 	public void Test_01_Request_KYC_Without_kyc_level_entity() throws Exception {	
+		//ApiResponse response24 = api.requestKYC(handle24, null, reader.getCellData(sheetName, privatekeys, 4));
+		//Thread.sleep(3000); kyc requested in check_kyc class
+		
 		ApiResponse response23 = api.requestKYC(handle23, null, reader.getCellData(sheetName, privatekeys, 3));
 		Thread.sleep(3000);
-
 		
 		ApiResponse response22 = api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);

@@ -84,7 +84,7 @@ public class Register_delete_registration_data extends Base_class {
 	Assert.assertEquals(response.getStatusCode(), 403);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-	Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), "Failed to authenticate user signature. The derived address "+reader.getCellData(sheetName, cryptoAddress, 6)+" is not registered to "+Handle_27+".");
+	Assert.assertEquals(((BaseResponse) response.getData()).getMessage().toLowerCase(), "failed to authenticate user signature. the derived address "+reader.getCellData(sheetName, cryptoAddress, 6)+" is not registered to "+Handle_27+".".toLowerCase());
 	}
 
 	

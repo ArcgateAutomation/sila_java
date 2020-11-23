@@ -1,5 +1,7 @@
 package sila_test_cases;
 
+import java.time.LocalDate;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.silamoney.client.api.ApiResponse;
@@ -40,7 +42,6 @@ public class Register_update_registration_data extends Base_class {
 	phoneUuid=entityResponse.getPhones().get(0).getUuid();
 	identityUuid=entityResponse.getIdentities().get(0).getUuid();
 	addressUuid=entityResponse.getAddresses().get(0).getUuid();
-	System.out.println(addressUuid);
 	
 	UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().uuid(emailUuid).email(updateEmail).build();
@@ -291,9 +292,7 @@ public class Register_update_registration_data extends Base_class {
 	public void test_015_registration_update_identity_with_empty_identity_alias() throws Exception {
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message = IdentityMessage.builder().uuid(identityUuid).identityAlias("").identityValue(updateIdentity).build();
-	ApiResponse response = api.updateIdentity(user, message);
-	System.out.println(response.getStatusCode()); // 200
-	
+	ApiResponse response = api.updateIdentity(user, message);	
 	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
@@ -310,9 +309,7 @@ public class Register_update_registration_data extends Base_class {
 	public void test_016_registration_update_identity_with_empty_identity_value() throws Exception {
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message = IdentityMessage.builder().uuid(identityUuid).identityAlias("SSN").identityValue("").build();
-	ApiResponse response = api.updateIdentity(user, message);
-	System.out.println(response.getStatusCode()); // 200
-	
+	ApiResponse response = api.updateIdentity(user, message);	
 	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
@@ -333,8 +330,6 @@ public class Register_update_registration_data extends Base_class {
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message = IdentityMessage.builder().uuid(identityUuid).identityAlias("TEST").identityValue(updateIdentity).build();
 	ApiResponse response = api.updateIdentity(user, message);
-	System.out.println(response.getStatusCode()); // 200
-	
 	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
@@ -355,9 +350,7 @@ public class Register_update_registration_data extends Base_class {
 	
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message = IdentityMessage.builder().uuid(identityUuid).identityAlias("ssn").identityValue(updateIdentity).build();
-	ApiResponse response = api.updateIdentity(user, message);
-	System.out.println(response.getStatusCode()); // 200
-	
+	ApiResponse response = api.updateIdentity(user, message);	
 	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
@@ -382,9 +375,7 @@ public class Register_update_registration_data extends Base_class {
 	
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message = IdentityMessage.builder().uuid(identityUuid).identityAlias("EIN").identityValue(updateIdentity).build();
-	ApiResponse response = api.updateIdentity(user, message);
-	System.out.println(response.getStatusCode()); // 200
-	
+	ApiResponse response = api.updateIdentity(user, message);	
 	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
@@ -1017,7 +1008,6 @@ public class Register_update_registration_data extends Base_class {
 	ApiResponse apiResponse = api.getEntity(handle27, reader.getCellData(sheetName, privatekeys, 7));
 	GetEntityResponse entityResponse = (GetEntityResponse) apiResponse.getData();
 	emailUuid=entityResponse.getEmails().get(0).getUuid();
-	System.out.println(emailUuid);
 	
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	AddressMessage message = AddressMessage.builder().uuid(emailUuid).addressAlias(updateAddressAlias)
@@ -1334,8 +1324,6 @@ public class Register_update_registration_data extends Base_class {
 }
 
 
-/*
-
 	
    @Test(priority = 58)
     @Description("Verify user is not able to update birthday below 18 years in request.")
@@ -1367,7 +1355,6 @@ public class Register_update_registration_data extends Base_class {
         UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
                 .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
         IndividualEntityMessage message = IndividualEntityMessage.builder().birthdate(LocalDate.of(year, month, TomowworDate)).build();
-        System.out.println(TomowworDate);
     	ApiResponse response = api.updateEntity(user, message);
     	Assert.assertEquals(response.getStatusCode(), 400);
     	Assert.assertEquals(response.getSuccess(), successFalse);
@@ -1394,7 +1381,6 @@ public class Register_update_registration_data extends Base_class {
         UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
                 .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
         IndividualEntityMessage message = IndividualEntityMessage.builder().birthdate(LocalDate.of(yearbefore18, lastMonth, YesterdayDate)).build();
-        System.out.println(yearbefore18+" "+lastMonth+"  "+YesterdayDate);
     	ApiResponse response = api.updateEntity(user, message);
     	Assert.assertEquals(response.getStatusCode(), successStatusCode);
     	Assert.assertEquals(response.getSuccess(), successTrue);
@@ -1424,7 +1410,7 @@ public class Register_update_registration_data extends Base_class {
 
     }
 
-	*/
+
 
 }
 

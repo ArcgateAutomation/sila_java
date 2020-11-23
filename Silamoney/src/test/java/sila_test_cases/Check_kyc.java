@@ -58,8 +58,15 @@ public class Check_kyc extends Base_class{
 	@Test(priority=3)
 	@Description("check kyc verification successfully passed")
 	public void Test_03_Check_kyc_verification_successfully_passed() throws Exception {
-		Thread.sleep(120000);
 		ApiResponse response = api.checkKYC(handle24, reader.getCellData(sheetName, privatekeys, 4));
+		for (int i = 1; i <=10; i++) {
+			Thread.sleep(30000);
+			System.out.println(((BaseResponse)response.getData()).getMessage());
+			if (((BaseResponse)response.getData()).getMessage().equals(passKycValificationMgs)) {
+				break;
+			}
+		}
+
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);		
 		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(), statusTrue);

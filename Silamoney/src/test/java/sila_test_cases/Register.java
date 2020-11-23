@@ -467,7 +467,7 @@ public class Register extends Base_class {
 		public void Test_20_register_with_empty_state_field() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("q11"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  "", 
-		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
+		postalCode,  phone,  email, identityNumber, Utility.getuser20CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 		
@@ -593,9 +593,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=29)
+		@Test(priority=27)
 		@Description("Check registration with invalid Email field")
-		public void Test_29_register_with_invalid_email_field() throws Exception { 
+		public void Test_27_register_with_invalid_email_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aa"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  invalid_Email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
@@ -616,9 +616,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=30)
+		@Test(priority=28)
 		@Description("Check registration with empty postal_code field")
-		public void Test_30_register_with_empty_postal_code_field() throws Exception { 
+		public void Test_28_register_with_empty_postal_code_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ab"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		"",  phone,  email, identityNumber, Utility.getUser3CryptoAddress(), birthdate.toDate(), country);
@@ -637,9 +637,9 @@ public class Register extends Base_class {
 		
 	
 		
-		@Test(priority=31)
+		@Test(priority=29)
 		@Description("Check registration with minumium 1 length postal_code field")
-		public void Test_31_register_with_minimum_1_length_postal_code_field() throws Exception { 
+		public void Test_29_register_with_minimum_1_length_postal_code_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ac"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		"5",  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
@@ -658,9 +658,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=32)
+		@Test(priority=30)
 		@Description("Check registration with empty postal_code field")
-		public void Test_32_register_with_mmaximum_10_length_postal_code_field() throws Exception { 
+		public void Test_30_register_with_mmaximum_10_length_postal_code_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31); 
 		User user = new User("ad"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		"9722543065",  phone,  email, identityNumber, Utility.getuser17CryptoAddress(), birthdate.toDate(), country);
@@ -681,9 +681,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=33)
+		@Test(priority=31)
 		@Description("Check registration with 11 characters length postal_code field")
-		public void Test_33_register_with_more_than_10_length_postal_code_field() throws Exception {
+		public void Test_31_register_with_more_than_10_length_postal_code_field() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ase"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		"97225-30625",  phone,  email, identityNumber, Utility.getuser17CryptoAddress(), birthdate.toDate(), country);		
@@ -700,9 +700,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=34)
+		@Test(priority=32)
 		@Description("Check registration with empty Crypto Address field")
-		public void Test_34_register_with_empty_crypto_address_field()throws Exception { 
+		public void Test_32_register_with_empty_crypto_address_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("af"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, "", birthdate.toDate(), country);
@@ -720,9 +720,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=35)
+		@Test(priority=33)
 		@Description("Check registration with more than 42 characters Crypto Address field")
-		public void Test_35_register_with_more_than_42_characters_crypto_address_field()throws Exception { 
+		public void Test_33_register_with_more_than_42_characters_crypto_address_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuserCryptoAddress43Char(), birthdate.toDate(), country);
@@ -738,9 +738,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=36)
+		@Test(priority=34)
 		@Description("Check registration with less than 42 characters Crypto Address field")
-		public void Test_36_register_with_less_than_42_characters_crypto_address_field()throws Exception { 
+		public void Test_34_register_with_less_than_42_characters_crypto_address_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ak"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuserCryptoAddress41Char(), birthdate.toDate(), country);		
@@ -757,9 +757,9 @@ public class Register extends Base_class {
 		}
 				
 		
-		@Test(priority=38)
+		@Test(priority=35)
 		@Description("Check registration with future birthdate_date field")
-		public void Test_38_register_with_Future_birth_date_field() throws Exception { 
+		public void Test_35_register_with_Future_birth_date_field() throws Exception { 
 		int TomowworDate=0;
 		if (today >=30) {
 		 TomowworDate=1;	
@@ -785,9 +785,9 @@ public class Register extends Base_class {
 		
 
 		
-		@Test(priority=39)
-		@Description("Check registration with below 18 years birthdate_date  field")
-		public void Test_39_register_with_below_18_Years_birth_date_field() throws Exception { 
+		@Test(priority=36)
+		@Description("Check registration with less than 18 years birthdate_date  field")
+		public void Test_36_register_with_less_than_18_Years_birth_date_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(yearbefore18, month, today); 
 		User user = new User("ag"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
@@ -807,24 +807,29 @@ public class Register extends Base_class {
 		
 		
 	
-		@Test(priority=40)
-		@Description("Check registration with after 18 years birthdate_date field")
-		public void Test_40_register_with_after_18_Years_birth_date_field() throws Exception { 
-		int YesterdayDate=0;
-		int lastMonth=0;
+		@Test(priority=37)
+		@Description("Check registration with more than 18 years birthdate_date field")
+		public void Test_37_register_with_after_18_Years_birth_date_field() throws Exception { 
+		int yesterdayDate=0;
+		int currentMonth=0;
 		if (today ==1) {
-		YesterdayDate=28;	
-		lastMonth=previousMonth;
-		}else {
-		YesterdayDate=yesterday;
-		lastMonth=month;}
+			yesterdayDate=30;
+			if (month==1) {
+				currentMonth=12;
+			} else {
+				currentMonth=month-1;
+			}
+		} else {yesterdayDate=today-1;
+		currentMonth=month;
+		}
 
-		LocalDate birthdate = new LocalDate(yearbefore18, lastMonth, YesterdayDate); 
+
+		LocalDate birthdate = new LocalDate(yearbefore18, currentMonth, yesterdayDate); 
 		User user = new User("am"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
-		
+		System.out.println("Testcase 37: "+((BaseResponse)response.getData()).getMessage());
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());
@@ -835,9 +840,9 @@ public class Register extends Base_class {
 		
 
 		
-		@Test(priority=40)
+		@Test(priority=38)
 		@Description("Check registration with before 18 years birthdate_date field")
-		public void Test_40_register_with_before_18_Years_birth_date_field() throws Exception { 
+		public void Test_38_register_with_before_18_Years_birth_date_field() throws Exception { 
 		int YesterdayDate=0;
 		int lastMonth=0;
 		if (today ==1) {
@@ -848,24 +853,26 @@ public class Register extends Base_class {
 		lastMonth=month;}
 
 		LocalDate birthdate = new LocalDate(yearbefore18, lastMonth, YesterdayDate); 
-		User user = new User("am"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
-		postalCode,  phone,  email, identityNumber, Utility.getuser18CryptoAddress(), birthdate.toDate(), country);
+		User user = new User("an"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser21CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
+		System.out.println("Testcase 37: "+((BaseResponse)response.getData()).getMessage());
 		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());
 		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusTrue); Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "am"+registerSuccessMsg_1);
+		statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "an"+registerSuccessMsg_1);
 		
 		}
 		
 		
 		 
-		@Test(priority=41)
+		@Test(priority=39)
 		@Description("Check registration with empty user_handle field")
-		public void Test_41_register_With_Empty_User_Handle_Field()throws Exception { 
+		public void Test_49_register_With_Empty_User_Handle_Field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		
 		User user = new User("",  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
@@ -883,9 +890,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=42)
+		@Test(priority=40)
 		@Description("check Response401")
-		public void Test_42_Check_Response_401()throws Exception {
+		public void Test_40_Check_Response_401()throws Exception {
 		LocalDate birthdate= new LocalDate(2000, 01, 31);
 		User user = new User("aah"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, "0x1234567890abcdef1234567890abcdef12345678", birthdate.toDate(), country);
@@ -905,9 +912,9 @@ public class Register extends Base_class {
 		
 		
 		
-		@Test(priority=43)
+		@Test(priority=41)
 		@Description("Check registration with different private_key")
-		public void Test_43_register_with_different_private_key()throws Exception { 
+		public void Test_41_register_with_different_private_key()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ai"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
@@ -925,9 +932,9 @@ public class Register extends Base_class {
 
 		
 		
-		@Test(priority=44)
+		@Test(priority=42)
 		@Description("Check registration with empty country field")
-		public void Test_44_register_with_empty_country_field()throws Exception { 
+		public void Test_42_register_with_empty_country_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuser19CryptoAddress(), birthdate.toDate(), "");
@@ -943,9 +950,9 @@ public class Register extends Base_class {
 		}
 
 
-		@Test(priority=45)
+		@Test(priority=43)
 		@Description("Check registration with lower case country field")
-		public void Test_45_register_with_lowercase_country_field()throws Exception { 
+		public void Test_43_register_with_lowercase_country_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), "us");
@@ -961,9 +968,9 @@ public class Register extends Base_class {
 		}
 
 		
-		@Test(priority=46)
+		@Test(priority=44)
 		@Description("Check registration with another country name")
-		public void Test_46_register_with_another_country_name()throws Exception { 
+		public void Test_44_register_with_another_country_name()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), "INDIA");
@@ -980,9 +987,9 @@ public class Register extends Base_class {
 
 		
 		
-		@Test(priority=47)
+		@Test(priority=45)
 		@Description("Verify user is not able to register when user send less than 2 characters in country name.")
-		public void test_047_register_with_less_than_2_characters_country_name()throws Exception { 
+		public void test_045_register_with_less_than_2_characters_country_name()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), "U");
@@ -1000,9 +1007,9 @@ public class Register extends Base_class {
 
 	
 		
-		@Test(priority=48)
+		@Test(priority=46)
 		@Description("Verify user is not able to register when user send more than 2 characters in country name.")
-		public void test_048_register_with_more_than_2_characters_country_name()throws Exception { 
+		public void test_046_register_with_more_than_2_characters_country_name()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), "USA");
