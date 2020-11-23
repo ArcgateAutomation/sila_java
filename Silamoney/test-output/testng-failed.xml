@@ -3,75 +3,24 @@
 <suite name="Failed suite [Silamoney Java SDK ]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="API(failed)">
     <classes>
-      <class name="sila_test_cases.Register_update_registration_data">
-        <methods>
-          <include name="test_033_registration_update_address_with_empty_city"/>
-          <include name="test_006_registration_update_email_with_more_than_max_email_length"/>
-          <include name="StartClass"/>
-          <include name="test_021_registration_update_address_with_empty_address_alias"/>
-          <include name="TearDown"/>
-          <include name="SetUp"/>
-          <include name="CloseClass"/>
-          <include name="test_056_registration_update_entity_name_less_than_3_characters"/>
-          <include name="test_057_registration_update_entity_name_more_than_40_characters"/>
-          <include name="edntest"/>
-          <include name="test_023_registration_update_address_with_empty_street_address_1"/>
-          <include name="test_037_registration_update_address_with_empty_state"/>
-          <include name="StartTest"/>
-          <include name="getResult"/>
-        </methods>
-      </class> <!-- sila_test_cases.Register_update_registration_data -->
       <class name="sila_test_cases.Register">
         <methods>
           <include name="Test_05_register_with_empty_street_address_1_field"/>
           <include name="Test_20_register_with_empty_state_field"/>
           <include name="StartClass"/>
-          <include name="Test_31_register_with_minimum_1_length_postal_code_field"/>
-          <include name="Test_44_register_with_empty_country_field"/>
+          <include name="Test_28_register_with_empty_postal_code_field"/>
+          <include name="Test_29_register_with_minimum_1_length_postal_code_field"/>
+          <include name="Test_42_register_with_empty_country_field"/>
           <include name="TearDown"/>
-          <include name="SetUp"/>
+          <include name="Test_37_register_with_after_18_Years_birth_date_field"/>
           <include name="CloseClass"/>
-          <include name="Test_40_register_with_after_18_Years_birth_date_field"/>
+          <include name="SetUp"/>
           <include name="edntest"/>
           <include name="Test_16_register_with_empty_city_field"/>
-          <include name="Test_30_register_with_empty_postal_code_field"/>
           <include name="StartTest"/>
           <include name="getResult"/>
         </methods>
       </class> <!-- sila_test_cases.Register -->
-      <class name="sila_test_cases.Register_add_registration_data">
-        <methods>
-          <include name="test_006_registration_add_email_with_more_than_max_email_length"/>
-          <include name="test_049_registration_add_address_with_empty_country"/>
-          <include name="StartClass"/>
-          <include name="test_044_registration_add_address_with_invalid_abbreviations_for_US_states"/>
-          <include name="test_27_registration_add_address_with_empty_street_address_1"/>
-          <include name="TearDown"/>
-          <include name="test_045_registration_add_address_with_empty_postal_code"/>
-          <include name="SetUp"/>
-          <include name="CloseClass"/>
-          <include name="edntest"/>
-          <include name="test_041_registration_add_address_with_empty_state"/>
-          <include name="test_037_registration_add_address_with_empty_city"/>
-          <include name="StartTest"/>
-          <include name="getResult"/>
-        </methods>
-      </class> <!-- sila_test_cases.Register_add_registration_data -->
-      <class name="sila_test_cases.Link_account">
-        <methods>
-          <include name="link_direct_link_account_with_10_characters_account_type"/>
-          <include name="StartClass"/>
-          <include name="link_direct_link_account_with_empty_account_type"/>
-          <include name="SetUp"/>
-          <include name="CloseClass"/>
-          <include name="edntest"/>
-          <include name="link_direct_link_account_with_empty_account_name"/>
-          <include name="Test_05_Link_account_with_empty_account_name"/>
-          <include name="StartTest"/>
-          <include name="TearDown"/>
-          <include name="getResult"/>
-        </methods>
-      </class> <!-- sila_test_cases.Link_account -->
       <class name="sila_test_cases.Request_kyc">
         <methods>
           <include name="Test_02_Request_KYC_With_empty_kyc_level_field"/>
@@ -84,6 +33,123 @@
           <include name="getResult"/>
         </methods>
       </class> <!-- sila_test_cases.Request_kyc -->
+      <class name="sila_test_cases.Register_add_registration_data">
+        <methods>
+          <include name="test_006_registration_add_email_with_more_than_max_email_length"/>
+          <include name="test_049_registration_add_address_with_empty_country"/>
+          <include name="StartClass"/>
+          <include name="test_044_registration_add_address_with_invalid_abbreviations_for_US_states"/>
+          <include name="test_27_registration_add_address_with_empty_street_address_1"/>
+          <include name="TearDown"/>
+          <include name="test_045_registration_add_address_with_empty_postal_code"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="test_041_registration_add_address_with_empty_state"/>
+          <include name="test_037_registration_add_address_with_empty_city"/>
+          <include name="StartTest"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Register_add_registration_data -->
+      <class name="sila_test_cases.Upload_document">
+        <methods>
+          <include name="Test_13_upload_document_with_gif_extension_file"/>
+          <include name="Test_11_upload_document_with_tiff_extension_file"/>
+          <include name="Test_05_upload_document_with_csv_extension_file"/>
+          <include name="StartClass"/>
+          <include name="Test_06_upload_document_with_txt_extension_file"/>
+          <include name="Test_14_upload_document_with_ico_extension_file"/>
+          <include name="Test_24_upload_document_with_different_mime_type_from_image_extension_04"/>
+          <include name="Test_22_upload_document_with_different_mime_type_from_image_extension_02"/>
+          <include name="Test_26_upload_document_with_different_mime_type_from_image_extension_06"/>
+          <include name="Test_17_upload_document_with_invalid_filename_field"/>
+          <include name="TearDown"/>
+          <include name="Test_08_upload_document_with_xlsx_extension_file"/>
+          <include name="Test_12_upload_document_with_svg_extension_file"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="Test_23_upload_document_with_different_mime_type_from_image_extension_03"/>
+          <include name="Test_10_upload_document_with_webp_extension_file"/>
+          <include name="Test_21_upload_document_with_different_mime_type_from_image_extension_01"/>
+          <include name="Test_09_upload_document_with_xls_extension_file"/>
+          <include name="Test_25_upload_document_with_different_mime_type_from_image_extension_05"/>
+          <include name="Test_07_upload_document_with_docx_extension_file"/>
+          <include name="StartTest"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Upload_document -->
+      <class name="sila_test_cases.Register_update_registration_data">
+        <methods>
+          <include name="test_033_registration_update_address_with_empty_city"/>
+          <include name="test_006_registration_update_email_with_more_than_max_email_length"/>
+          <include name="StartClass"/>
+          <include name="test_021_registration_update_address_with_empty_address_alias"/>
+          <include name="TearDown"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="test_056_registration_update_entity_name_less_than_3_characters"/>
+          <include name="test_057_registration_update_entity_name_more_than_40_characters"/>
+          <include name="edntest"/>
+          <include name="test_023_registration_update_address_with_empty_street_address_1"/>
+          <include name="test_037_registration_update_address_with_empty_state"/>
+          <include name="StartTest"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Register_update_registration_data -->
+      <class name="sila_test_cases.Link_account">
+        <methods>
+          <include name="link_direct_link_account_with_10_characters_account_type"/>
+          <include name="StartClass"/>
+          <include name="link_direct_link_account_with_empty_account_type"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="link_direct_link_account_with_empty_account_name"/>
+          <include name="Test_05_Link_account_with_empty_account_name"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Link_account -->
+      <class name="sila_test_cases.Plaid_sameday_auth">
+        <methods>
+          <include name="StartClass"/>
+          <include name="test_07_plaid_same_day_with_different_private_key"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="StartTest"/>
+          <include name="Test_04_plaid_sameday_auth_with_default_account_name"/>
+          <include name="TearDown"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Plaid_sameday_auth -->
+      <class name="sila_test_cases.Get_account">
+        <methods>
+          <include name="Test_03_Get_account_with_another_private_key"/>
+          <include name="StartClass"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="Test_08_Get_account_with_another_private_key"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Get_account -->
+      <class name="sila_test_cases.Check_kyc">
+        <methods>
+          <include name="StartClass"/>
+          <include name="CloseClass"/>
+          <include name="SetUp"/>
+          <include name="edntest"/>
+          <include name="Test_03_Check_kyc_verification_successfully_passed"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- sila_test_cases.Check_kyc -->
     </classes>
   </test> <!-- API(failed) -->
 </suite> <!-- Failed suite [Silamoney Java SDK ] -->
