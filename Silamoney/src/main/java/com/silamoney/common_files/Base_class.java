@@ -32,12 +32,14 @@ import com.silamoney.client.domain.Environments;
 
 public class Base_class extends ValidationData{
 
-	static String workingDir = System.getProperty("user.dir");
+	protected static String workingDir = System.getProperty("user.dir");
 	public static Xls_Reader1 reader = new  Xls_Reader1(workingDir+"/TestData/datafile.xlsx");
 	//public String readdata=reader.getCellData("TestData", "valie", 3);
 	public static String sheetName ="TestData";
 	public static String privatekeys ="privatekeys";
 	public static String cryptoAddress ="cryptoAddress";
+	
+	
 
 
 	LocalDate localDate = LocalDate.now();
@@ -66,7 +68,7 @@ public class Base_class extends ValidationData{
 	public static DateFormat TimeFormat3 = new SimpleDateFormat("yyyyMdHH");
 	public static String DateNTime1 = TimeFormat3.format(new Date()).toString();
 
-	static String RandaomValue="g";
+	static String RandaomValue="b";
 	public static String Handle_1 =RandaomValue+"b"+DateNTime1;
 	public static String handle1 =Handle_1+".silamoney.eth";
 	
@@ -101,6 +103,9 @@ public class Base_class extends ValidationData{
 	
 	public static String Handle_27 =RandaomValue+"l"+DateNTime1;
 	public static String handle27 =Handle_27+".silamoney.eth";
+	
+	public static String Handle_28 =RandaomValue+"p"+DateNTime1;
+	public static String handle28 =Handle_28+".silamoney.eth";
 	
 	public static String Handle_31 =RandaomValue+"m"+DateNTime1;
 	public static String handle31 =Handle_31+".silamoney.eth";

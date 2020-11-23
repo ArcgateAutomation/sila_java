@@ -558,7 +558,7 @@ public class Utility {
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				user17PrivateKey = privateKeyInDec.toString(17);
+				user17PrivateKey = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				user17CryptoAddress = "0x" + aWallet.getAddress();
@@ -581,7 +581,7 @@ public class Utility {
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				user18PrivateKey = privateKeyInDec.toString(18);
+				user18PrivateKey = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				user18CryptoAddress = "0x" + aWallet.getAddress();
@@ -604,7 +604,7 @@ public class Utility {
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				user19PrivateKey = privateKeyInDec.toString(19);
+				user19PrivateKey = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				user19CryptoAddress = "0x" + aWallet.getAddress();
@@ -615,6 +615,28 @@ public class Utility {
 		}
 
 		return user19CryptoAddress;
+	}
+	
+	
+	private static String user20CryptoAddress;
+	public static String getuser20CryptoAddress() {
+		if (user20CryptoAddress == null || user20CryptoAddress.isBlank()) {
+			try {
+
+				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
+				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
+
+				user20PrivateKey = privateKeyInDec.toString(16);
+
+				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
+				user20CryptoAddress = "0x" + aWallet.getAddress();
+			} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+					| CipherException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return user20CryptoAddress;
 	}
 	
 	private static String user21CryptoAddress;
@@ -770,6 +792,24 @@ public class Utility {
 		return user27CryptoAddress;
 	}
 	
+	
+	private static String user28CryptoAddress;
+	public static String getuser28CryptoAddress() {
+		if (user28CryptoAddress == null || user28CryptoAddress.isBlank()) {
+			try {
+				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
+				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
+				user28PrivateKey = privateKeyInDec.toString(16);
+				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
+				user28CryptoAddress = "0x" + aWallet.getAddress();
+			} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+					| CipherException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return user28CryptoAddress;
+	}
 
 	
 	private static String user31CryptoAddress;
@@ -1036,7 +1076,15 @@ public class Utility {
 	}
 	
 	
-
+	private static String user20PrivateKey;
+	/**
+	 * @return String
+	 */
+	public static String getuser20PrivateKey() {
+		getuser20CryptoAddress();
+		return user20PrivateKey;
+	}
+	
 	
 	private static String user21PrivateKey;
 	/**
@@ -1108,6 +1156,14 @@ public class Utility {
 	}	
 	
 
+	private static String user28PrivateKey;
+	/**
+	 * @return String
+	 */
+	public static String getuser28PrivateKey() {
+		getuser28CryptoAddress();
+		return user28PrivateKey;
+	}	
 	private static String user31PrivateKey;
 	/**
 	 * @return String

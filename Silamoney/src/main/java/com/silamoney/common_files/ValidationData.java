@@ -53,7 +53,10 @@ public class ValidationData{
 	protected String invalidPublicTokenErrorMsg ="The provided Plaid public token is in an invalid format. Expected format: public-<environment>-<identifier>.";
 	protected String accountNameWith41Chars ="this account name 4 the test purpose only";
 	protected String accountNameWith40Chars ="this account name 4 the test purpos only";
-	protected String validAccounrName ="defaultacc";
+	protected String validAccountName ="defaultacc";
+	protected String validPlaidAccountName ="defaultacc1";
+	protected String validDirectAccountName ="defaultacc2";
+	
 	protected String successAccountLinkMsg ="Bank account successfully linked with status \"instantly_verified\".";
 
 
@@ -124,7 +127,7 @@ public class ValidationData{
 	protected String directLinkAccSuccessMsg="Bank account successfully manually linked.";
 	
 	//plaid sameday auth
-	protected String validationMsg1="Bank account \"default\" for user/handle \""+Base_class.Handle_22+"\" not in status \"microdeposit_pending_manual_verification\"";
+	protected String validationMsg1="Bank account \""+validAccountName+"\" for user/handle \""+Base_class.Handle_22+"\" not in status \"microdeposit_pending_manual_verification\"";
 	protected String validationMsg2="No bank account found matching name: \"saving\"";
 	
 	//Add registration data
