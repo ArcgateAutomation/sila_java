@@ -1049,8 +1049,8 @@ public class Register_update_registration_data extends Base_class {
 	
 	
 	@Test(priority = 44)
-	@Description("Verify user is not able to update empty first name.")
-	public void test_044_registration_update_empty_first_name() throws Exception {	
+	@Description("Verify user is able to update entity with valid data.")
+	public void test_044_registration_update_with_all_valid_Entity() throws Exception {	
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IndividualEntityMessage message = IndividualEntityMessage.builder().firstName(newFirstName) .lastName(newLastName).entityName(newEntity).build();
 	ApiResponse response = api.updateEntity(user, message);

@@ -27,7 +27,6 @@ public class Register_delete_registration_data extends Base_class {
 	
 	//Get Entity
 	ApiResponse responseEntiy = api.getEntity(handle27, reader.getCellData(sheetName, privatekeys, 7));
-	System.out.println(responseEntiy.getStatusCode()); // 200
 	GetEntityResponse entityResponse = (GetEntityResponse) responseEntiy.getData();
 	identityUuid=entityResponse.getIdentities().get(0).getUuid();
 	addressUuid=entityResponse.getAddresses().get(0).getUuid();	

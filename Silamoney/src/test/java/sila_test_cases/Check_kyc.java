@@ -14,8 +14,6 @@ import io.qameta.allure.Description;
 
 public class Check_kyc extends Base_class{
 
-	
-
 
 	@Test(priority=1)
 	@Description("check kyc with not requested kyc user_handle")
@@ -23,7 +21,7 @@ public class Check_kyc extends Base_class{
 		
 		//User5
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
-		User user1 = new User(handle2,  firstName,  lastName,  streetAddress1, streetAddress2, city,  state, 
+		User user1 = new User(handle2,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
 				postalCode,  phone,  email, identityNumber, Utility.getUser2CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 12, Utility.getUser2PrivateKey());
 		ApiResponse response1 = api.register(user1);
@@ -61,7 +59,6 @@ public class Check_kyc extends Base_class{
 		ApiResponse response = api.checkKYC(handle24, reader.getCellData(sheetName, privatekeys, 4));
 		for (int i = 1; i <=10; i++) {
 			Thread.sleep(30000);
-			System.out.println(((BaseResponse)response.getData()).getMessage());
 			if (((BaseResponse)response.getData()).getMessage().equals(passKycValificationMgs)) {
 				break;
 			}

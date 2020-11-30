@@ -16,7 +16,7 @@ import com.silamoney.common_files.Base_class;
 import com.silamoney.common_files.Utility;
 import io.qameta.allure.Description;
 
-public class Get_account extends Base_class{
+	public class Get_account extends Base_class{
 
 //Get account -plaid account
 	
@@ -106,7 +106,6 @@ public class Get_account extends Base_class{
 	public void Test_07_Get_account_with_unregistered_user_handle() throws Exception {
 		ApiResponse getAccountresponse = api.getAccounts(handleNotRegistered, reader.getCellData(sheetName, privatekeys, 3));
 		
-		System.out.println(((BaseResponse)getAccountresponse.getData()).getMessage());
 		Assert.assertEquals(getAccountresponse.getStatusCode(), 401);
 		Assert.assertEquals(getAccountresponse.getSuccess(), successFalse);
 		Assert.assertEquals(((BaseResponse) getAccountresponse.getData()).getStatus(),statusFalse);
