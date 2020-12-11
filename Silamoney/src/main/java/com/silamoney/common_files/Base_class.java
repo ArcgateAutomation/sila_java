@@ -4,13 +4,14 @@ package com.silamoney.common_files;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
-import org.bouncycastle.asn1.cmp.ProtectedPart;
+import java.util.Date;
+import java.util.UUID;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,22 +20,19 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
+import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.Keys;
+import org.web3j.crypto.WalletFile;
+
 import com.silamoney.client.api.SilaApi;
 import com.silamoney.client.domain.Environments;
+import com.silamoney.client.domain.Wallet;
 
 
 public class Base_class extends ValidationData{
 
 	protected static String workingDir = System.getProperty("user.dir");
 	public static Xls_Reader1 reader = new  Xls_Reader1(workingDir+"/TestData/datafile.xlsx");
-	//public String readdata=reader.getCellData("TestData", "valie", 3);
 	public static String sheetName ="TestData";
 	public static String privatekeys ="privatekeys";
 	public static String cryptoAddress ="cryptoAddress";
@@ -53,13 +51,7 @@ public class Base_class extends ValidationData{
 	protected int yearbefore18 = year-18;
 	protected int previousMonth = month-1;
 	
-	//Integer  n=null;
-	//protected int noYear = n;
-	//protected int noMonth = n;
-	//protected int NoDate = n ;
-
-	
-	public static DateFormat TimeFormat1 = new SimpleDateFormat("MMddyyyy");
+	public static DateFormat TimeFormat1 = new SimpleDateFormat("MMddyyyymm");
 	public static String DateNTime = TimeFormat1.format(new Date()).toString();
 	
 	DateFormat TimeFormat2 = new SimpleDateFormat("MMM-dd-yyyy");
@@ -80,8 +72,6 @@ public class Base_class extends ValidationData{
 	
 	public static String Handle_4 =RandaomValue+"d"+DateNTime1;
 	public static String handle4 =Handle_4+".silamoney.eth";
-	
-
 	
 	public static String Handle_21 =RandaomValue+"f"+DateNTime1;
 	public static String handle21 =Handle_21+".silamoney.eth";
@@ -110,10 +100,19 @@ public class Base_class extends ValidationData{
 	public static String Handle_31 =RandaomValue+"m"+DateNTime1;
 	public static String handle31 =Handle_31+".silamoney.eth";
 	
-	public static String Handle_not_registered ="digitest";
+	public static String Handle_32 =RandaomValue+"n"+DateNTime1;
+	public static String handle32 =Handle_32+".silamoney.eth";
+	
+	public static String Handle_33 =RandaomValue+"o"+DateNTime1;
+	public static String handle33 =Handle_33+".silamoney.eth";
+	
+	public static String Handle_not_registered ="apptestuser";
 	public static String handleNotRegistered =Handle_not_registered+".silamoney.eth";
 	//public static String Handle_5 =RandaomValue+"e"+DateNTime1;
 	//public static String Unregistered_handle =Handle_not_registered+".silamoney.eth";
+	
+	public static String business_Handle =RandaomValue+"s"+DateNTime1;
+	public static String businessHandle =business_Handle+".silamoney.eth";
 	
 	
 
@@ -153,48 +152,13 @@ public class Base_class extends ValidationData{
 	protected String validPublicToken=Utility.getPlaidToken();
 	protected String emptyPublicToken="";
 	protected String invalidPublicToken="public-sandbox-dce1bfb8-3ca8-4591-b9ba-111111111111";
-	
-	
-	
-	
-	
-	
-	public static String Test_Case_Id="null";
-	public String TetsCaseID=Test_Case_Id;
-	public String Execution_Operating_System="Window 10";
-	public String environment="SANDBOX";
-	public String executionStartTime=null;
-	public String sdkVersion="0.2.10-rc2";
-	public String Project_Name="Silamoney";
-	public String Executed_By="Sunil Sharma";
-	public String Platform="Java";
-	
-	public static ExtentHtmlReporter htmlReporter;
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	
+
 
 	
-	
+
 	
 	@BeforeSuite
-	public void SetUp(){
-		
-		//htmlReporter =new ExtentHtmlReporter(System.getProperty("user.dir")+"/Reports/Sila_JAVA_SDK_TestReport"+executiondate+".html");
-		//htmlReporter.config().setDocumentTitle("Automation Report"); //title of report
-		//htmlReporter.config().setReportName("Functional report of Silamoney Java SDK API test"); // Name of report
-		//htmlReporter.config().setTheme(Theme.DARK);	
-		//extent = new ExtentReports();
-		//extent.attachReporter(htmlReporter);
-
-		//extent.setSystemInfo("Project Name :", Project_Name);
-		//extent.setSystemInfo("Executed By :", Executed_By);
-		//extent.setSystemInfo("SDK Platform :", Platform);
-		//extent.setSystemInfo("SDK Version : :", sdkVersion);
-		//extent.setSystemInfo("Test Environment :", environment);
-		//extent.setSystemInfo("Execution Date :", executiondate);
-		
-		
+	public void TearUp(){
 		// delete files in folder
 		File folder = new File(System.getProperty("user.dir")+"/allure-results");
         File fList[] = folder.listFiles();
@@ -224,35 +188,17 @@ public class Base_class extends ValidationData{
 	
 	
 	
-	@AfterMethod
-	public void getResult(ITestResult result) {
-		/*
-		  if (result.getStatus() == ITestResult.FAILURE) { test.log(Status.FAIL,
-		  MarkupHelper.createLabel("Test Case:- "+result.getName() +
-		  " has FAILED due to below issues:", ExtentColor.BLACK));
-		  test.fail(result.getThrowable());
-		  
-		  } else if (result.getStatus() == ITestResult.SUCCESS) { test.log(Status.PASS,
-		  MarkupHelper.createLabel("Test Case:- "+result.getName() + " has PASSED",
-		  ExtentColor.BLACK)); //test.pass(result.getThrowable());
-		  
-		  } else { test.log(Status.SKIP,
-		  MarkupHelper.createLabel("Test Case:- "+result.getName() + " has SKIPPED",
-		  ExtentColor.BLACK)); //test.skip(result.getThrowable());
-		  
-		  }
-		  
-		  */
-		 
-		
-		
-	}
+//	@AfterMethod
+//	public void getResult(ITestResult result) { 
+//		
+//		
+//	}
 	
 
 	
 	
 	@AfterTest
-	public void edntest( ) throws IOException {
+	public void Endtest( ) throws IOException {
 		
 
 		
@@ -261,10 +207,7 @@ public class Base_class extends ValidationData{
 	
 	
 	@AfterClass
-	public void CloseClass() throws Exception{
-		//Thread.sleep(5000);
-		//ProcessBuilder rb=new ProcessBuilder(System.getProperty("user.dir")+"//allure.bat"); //generate allure report
-		//rb.start();
+	public void EndClass() throws Exception{
 
 	}
 	
@@ -272,9 +215,7 @@ public class Base_class extends ValidationData{
 	
 	@AfterSuite
 	public void TearDown() throws IOException, Exception{
-		//Thread.sleep(5000);
-		//ProcessBuilder rb=new ProcessBuilder(System.getProperty("user.dir")+"//allure.bat"); //generate allure report
-		//rb.start();
+
 
 	}
 

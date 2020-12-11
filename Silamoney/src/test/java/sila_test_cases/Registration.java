@@ -3,22 +3,16 @@ package sila_test_cases;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.silamoney.client.api.ApiResponse;
-import com.silamoney.client.api.SilaApi;
-import com.silamoney.client.domain.AddressMessage;
 import com.silamoney.client.domain.BaseResponse;
 import com.silamoney.common_files.Base_class;
 import com.silamoney.common_files.Utility;
 import io.qameta.allure.Description;
 import com.silamoney.client.domain.User;
-import com.silamoney.client.domain.UserHandleMessage;
-
-import java.util.ArrayList;
-
 import org.joda.time.LocalDate;
 
 
 
-public class Register extends Base_class {
+public class Registration extends Base_class {
 
 	
 	// Register Individual User
@@ -27,11 +21,41 @@ public class Register extends Base_class {
 		public void Test_01_Test_01_register_with_all_valid_data() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 			
+
+		
+		User user2 = new User(handle22,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser22CryptoAddress(), birthdate.toDate(), country);
+		reader.setCellData(sheetName, privatekeys, 2, Utility.getuser22PrivateKey());
+		reader.setCellData(sheetName, cryptoAddress, 2, Utility.getuser22CryptoAddress());
+		api.register(user2);
+		Thread.sleep(3000);
+		
+		
+		User user3 = new User(handle23,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city,  state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser23CryptoAddress(), birthdate.toDate(), country);
+		reader.setCellData(sheetName, privatekeys, 3, Utility.getuser23PrivateKey());
+		reader.setCellData(sheetName, cryptoAddress, 3, Utility.getuser23CryptoAddress());
+		api.register(user3);
+		
 		//User4
 		User user4 = new User(handle24,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuser24CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 4, Utility.getuser24PrivateKey());
-		ApiResponse response =api.register(user4);
+		reader.setCellData(sheetName, cryptoAddress, 4, Utility.getuser24CryptoAddress());
+		api.register(user4);
+		Thread.sleep(3000);
+		
+//		//User5
+//		User user5 = new User(handle25,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
+//		postalCode,  phone,  email, identityNumber, Utility.getuser25CryptoAddress(), birthdate.toDate(), country);
+//		reader.setCellData(sheetName, privatekeys, 5, Utility.getuser25PrivateKey());
+//		 api.register(user5);
+//		Thread.sleep(3000);
+		
+		User user6 = new User(handle26,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city, state, postalCode,  phone,  email, identityNumber, Utility.getuser26CryptoAddress(), birthdate.toDate(), country);
+		reader.setCellData(sheetName, privatekeys, 6, Utility.getuser26PrivateKey());
+		reader.setCellData(sheetName, cryptoAddress, 6, Utility.getuser26CryptoAddress());
+		api.register(user6);
 		Thread.sleep(3000);
 		
 		//User5   : Use for Updated registration data
@@ -39,24 +63,26 @@ public class Register extends Base_class {
 		postalCode,  phone,  email, identityNumber, Utility.getuser27CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 7, Utility.getuser27PrivateKey());
 		reader.setCellData(sheetName, cryptoAddress, 7, Utility.getuser27CryptoAddress());
-		api.register(user7);
+		ApiResponse response =api.register(user7);
 
+		Thread.sleep(3000);
+		
+		User user33 = new User(handle33,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser33CryptoAddress(), birthdate.toDate(), country);
+		reader.setCellData(sheetName, privatekeys, 33, Utility.getuser33PrivateKey());
+		reader.setCellData(sheetName, cryptoAddress, 33, Utility.getuser33CryptoAddress());
+		api.register(user33);
 		Thread.sleep(3000);
 		
 
 		
-		//User5
-		User user5 = new User(handle25,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
-		postalCode,  phone,  email, identityNumber, Utility.getuser25CryptoAddress(), birthdate.toDate(), country);
-		reader.setCellData(sheetName, privatekeys, 5, Utility.getuser25PrivateKey());
-		 api.register(user5);
-		Thread.sleep(3000);
+
 		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());
 		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusTrue);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), registerSuccessMsg_2);
+		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), Handle_27+" was successfully registered.");
 
 		}
 	
@@ -120,11 +146,7 @@ public class Register extends Base_class {
 		}
 		
 		
-		
-	
-		
-		//Street Address+01
-		
+			
 		@Test(priority=5)
 		@Description("Check registration with empty Street_Address_1 field")
 		public void Test_05_register_with_empty_street_address_1_field()throws Exception { 
@@ -168,7 +190,6 @@ public class Register extends Base_class {
 		
 		
 		
-		//registration with less than 3 characters Street_Address_2 field
 		
 		@Test(priority=7)
 		@Description("Check registration with less than 3 characters Street_Address_1 field")
@@ -189,7 +210,6 @@ public class Register extends Base_class {
 		}
 		
 		
-		//registration with more than 40 characters Street_Address_1 field
 		
 		@Test(priority=8)
 		@Description("Register With more than 40 characters street address1 field")
@@ -210,9 +230,7 @@ public class Register extends Base_class {
 		}
 		
 		
-		
-		
-		// registration with 3 characters Street_Address_1 field
+
 		
 		@Test(priority=9)
 		@Description("Check registration with 3 characters Street_Address_1 field")
@@ -629,6 +647,8 @@ public class Register extends Base_class {
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 		
+		System.out.println("Test_29_register_with_minimum_1_length_postal_code_field: "+((BaseResponse)
+		response.getData()).getMessage());
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());
@@ -705,7 +725,7 @@ public class Register extends Base_class {
 		
 		@Test(priority=33)
 		@Description("Check registration with more than 42 characters Crypto Address field")
-		public void Test_33_register_with_more_than_42_characters_crypto_address_field()throws Exception { 
+		public void Test_33_register_with_43_characters_crypto_address_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("aj"+handle1,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuserCryptoAddress43Char(), birthdate.toDate(), country);
@@ -723,7 +743,7 @@ public class Register extends Base_class {
 		
 		@Test(priority=34)
 		@Description("Check registration with less than 42 characters Crypto Address field")
-		public void Test_34_register_with_less_than_42_characters_crypto_address_field()throws Exception { 
+		public void Test_34_register_with_41_characters_crypto_address_field()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ak"+handle1,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuserCryptoAddress41Char(), birthdate.toDate(), country);		
@@ -1101,12 +1121,11 @@ public class Register extends Base_class {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 			
 		//User4
-		User user4 = new User(handle24,  firstName,  lastName, textWith40Chars,   streetAddress1, streetAddress2, city,  state, 
+		User user4 = new User("be"+handle1,  firstName,  lastName, "ex",   streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuser31CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response =api.register(user4);
 		Thread.sleep(3000);
 
-		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
 		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
@@ -1119,16 +1138,15 @@ public class Register extends Base_class {
 		
 		
 		@Test(priority = 52)
-		@Description("Check registration with 2 characters entity name")
+		@Description("Check registration with 41 characters entity name")
 		public void Test_52_register_with_41_characters_entity_name() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 			
 		//User4
-		User user4 = new User(handle24,  firstName,  lastName, textWith40Chars,   streetAddress1, streetAddress2, city,  state, 
+		User user4 = new User("bf"+handle1,  firstName,  lastName, textWith41Chars,   streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuser32CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response =api.register(user4);
 		Thread.sleep(3000);
-
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);

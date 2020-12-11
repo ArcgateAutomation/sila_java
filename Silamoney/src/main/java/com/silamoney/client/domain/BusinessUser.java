@@ -1,7 +1,7 @@
 package com.silamoney.client.domain;
 
+
 import io.reactivex.annotations.Nullable;
-import lombok.Getter;
 
 /**
  * Class used in the registerBusiness method.
@@ -9,84 +9,160 @@ import lombok.Getter;
  * @author Karlo Lorenzana
  */
 public class BusinessUser {
-    @Getter
+	private final String country;;
+     
     private final String handle;
-    @Getter
-    private final String addressAlias;
-    @Getter
-    private final String address;
-    @Getter
-    private final String address2;
-    @Getter
-    private final String city;
-    @Getter
-    private final String state;
-    @Getter
-    private final String zipCode;
-    @Getter
-    private final String phone;
-    @Getter
-    private final String email;
-    @Getter
-    private final String identityValue;
-    @Getter
-    private final String cryptoAddress;
-    @Getter
+    
     private final String entityName;
-    @Getter
+    
+    private final String identityAlias;
+    
+    private final String identityValue;
+    
+    private final String phone;
+    
+    private final String email;
+    
+    private final String Address;
+    
+    private final String Address2;
+    
+    private final String city;
+    
+    private final String state;
+     
+    private final String zipCode;
+    
+    private final String cryptoAddress;
+    
+    private final String cryptoAlias;
+    
+    private final String type;
+    
     private final BusinessType businessType;
-    @Getter
+    
     private final String businessWebsite;
-    @Getter
+    
     private final String doingBusinessAs;
-    @Getter
-    private final String naicsCategory;
-    @Getter
-    private final String country;
+    
+    private final NaicsCategoryDescription naicsCategory;
+    
 
-    public BusinessUser(String handle, String addressAlias, String address, @Nullable String address2, String city,
-            String state, String zipCode, String phone, String email, String identityValue, String cryptoAddress,
-            String entityName, BusinessType businessType, String businessWebsite, String doingBusinessAs,
-            String naicsCategory) {
+    public  BusinessUser(String country, String handle, String entityName, String identityAlias, String identityValue, String phone, String email, String Address,  @Nullable String Address2, String city,
+            String state, String zipCode,  String cryptoAddress, String cryptoAlias,  String type, BusinessType businessType, String businessWebsite, String doingBusinessAs,
+            NaicsCategoryDescription naicsCategory) {
+    	
+    	this.country = country;
         this.handle = handle;
-        this.addressAlias = addressAlias;
-        this.address = address;
-        this.address2 = address2;
+        this.entityName = entityName;
+        this.identityAlias = identityAlias;
+        this.identityValue = identityValue;
+        this.phone = phone;
+        this.email = email;
+        this.Address = Address;
+        this.Address2 = Address2;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
-        this.phone = phone;
-        this.email = email;
-        this.identityValue = identityValue;
         this.cryptoAddress = cryptoAddress;
-        this.entityName = entityName;
+        this.cryptoAlias=cryptoAlias;
+        this.type=type;
         this.businessType = businessType;
         this.businessWebsite = businessWebsite;
         this.doingBusinessAs = doingBusinessAs;
         this.naicsCategory = naicsCategory;
-        this.country = "US";
+        
+        
     }
+    
+	    public String getCountry() {
+	        return country;
+	    }   
+        
+        public String getHandle() {
+            return handle;
+        }
+        
+        public String getEntityName() {
+            return entityName;
+        }  
+        
+        public String getIdentityAlias() {
+            return identityAlias;
+        }  
+        
+        public String getIdentityValue() {
+            return identityValue;
+        }  
+        
 
-    public BusinessUser(String handle, String addressAlias, String address, @Nullable String address2, String city,
-            String state, String zipCode, String phone, String email, String identityValue, String cryptoAddress,
-            String entityName, BusinessType businessType, String businessWebsite, String doingBusinessAs,
-            String naicsCategory, String country) {
-        this.handle = handle;
-        this.addressAlias = addressAlias;
-        this.address = address;
-        this.address2 = address2;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.phone = phone;
-        this.email = email;
-        this.identityValue = identityValue;
-        this.cryptoAddress = cryptoAddress;
-        this.entityName = entityName;
-        this.businessType = businessType;
-        this.businessWebsite = businessWebsite;
-        this.doingBusinessAs = doingBusinessAs;
-        this.naicsCategory = naicsCategory;
-        this.country = country;
-    }
+        public String getPhone() {
+            return phone;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+        
+        
+        public String getAddress() {
+            return Address;
+        }
+        
+        
+        public String getAddress2() {
+            return Address2;
+        }
+        
+        
+        public String getCity() {
+            return city;
+        }
+
+
+        public String getState() {
+            return state;
+        }
+
+
+        public String getZipCode() {
+            return zipCode;
+        }
+        
+        public String getCryptoAddress() {
+            return cryptoAddress;
+        }
+
+        public String getCryptoAlias() {
+            return cryptoAlias;
+        }
+        
+
+        public String getType() {
+            return type;
+        }
+        
+
+        public BusinessType getBusinessType() {
+            return businessType;
+        }  
+        
+        public String getBusinessWebsite() {
+            return businessWebsite;
+        }  
+        
+        
+        public String getDoingBusinessAs() {
+            return doingBusinessAs;
+        }  
+        
+        public NaicsCategoryDescription getNaicsCategory() {
+            return naicsCategory;
+        }  
+        
+        
+
+        
+
+   
 }

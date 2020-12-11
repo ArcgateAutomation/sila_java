@@ -53,6 +53,12 @@ public class ValidationData{
 	protected String invalidPublicTokenErrorMsg ="The provided Plaid public token is in an invalid format. Expected format: public-<environment>-<identifier>.";
 	protected String accountNameWith41Chars ="this account name 4 the test purpose only";
 	protected String accountNameWith40Chars ="this account name 4 the test purpos only";
+	protected String textWith41Chars ="te this test name 4 the test purpose only";
+	protected String textWith40Chars ="t this test name 4 the test purpose only";
+	
+	
+	protected String textWith41Char =Base_class.DateNTime+"1 this account name 4 the test.";
+	protected String textWith40Char =Base_class.DateNTime+" this account name 4 the test.";
 	protected String validAccountName ="defaultacc";
 	protected String validPlaidAccountName ="defaultacc1";
 	protected String validDirectAccountName ="defaultacc2";
@@ -66,6 +72,7 @@ public class ValidationData{
 	String userHandle1=Base_class.handle1;
 	protected static String firstName="peter";
 	protected static String lastName="parker";
+	protected static String entityName="test user";
 	protected static String streetAddress1="123 Main Street"; 
 	protected static String streetAddress_40Chars="123 main street, link road, near central"; 
 	protected static String streetAddress_41Chars="123 main street, link road, near central."; 
@@ -82,6 +89,8 @@ public class ValidationData{
 	protected static String cryptoAddress="java_wallet_1"; 
 	protected static String identityNumber ="574-86-1689"; 
 	protected static String identityNumber2 ="SSN"; 
+	protected static String individualIdentityAlias ="EIN"; 
+	protected static String businessIdentyAlias ="EIN";
 	protected static String emptyIdentityNumber =""; 
 	protected static String country ="US"; 
 	//protected String birthdate="1990,01,31";
@@ -90,7 +99,7 @@ public class ValidationData{
 	protected static String max_length_email = "fakedsadasdasddsadasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdsadassadasdasddsadasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdsadasssadasdasddsadasdasdasdasdasdasdasdasdasdasdasdasdasdgsadadasdasdasdasdasdasdsadasdasdasdasdasdasdasdasdasd@gmail.com";
 
 	protected String registerSuccessMsg_1=Base_class.Handle_1+" was successfully registered.";
-	protected String registerSuccessMsg_2=Base_class.Handle_22+" was successfully registered.";
+	protected String registerSuccessMsg_2=Base_class.Handle_24+" was successfully registered.";
 	protected String registerSuccessMsg_3=Base_class.Handle_3+" was successfully registered.";
 	protected String registerSuccessMsg_4=Base_class.Handle_4+" was successfully registered.";
 	protected String registerSuccessMsg_5=Base_class.Handle_1+" is taken.";
@@ -129,6 +138,7 @@ public class ValidationData{
 	//plaid sameday auth
 	protected String validationMsg1="Bank account \""+validAccountName+"\" for user/handle \""+Base_class.Handle_22+"\" not in status \"microdeposit_pending_manual_verification\"";
 	protected String validationMsg2="No bank account found matching name: \"saving\"";
+	protected String validationMsg3="No bank account found matching name: \"defaultacc\"";
 	
 	//Add registration data
 	protected static String emptyStreetAddress1="";
@@ -172,8 +182,14 @@ public class ValidationData{
 	
 	
 	//Business User
-	protected static String businessAlias="property dealer";
 	protected static String naicsCategory="property dealer";
+	//protected static String doing_business_as="seller";
+	protected static String wallet_name="test_wallet";
+	
+	
+	
+	//Business User
+	protected static String businessAlias="property dealer";
 	protected static String business_website="https://www.silatest.crm";
 	protected static String doing_business_as="seller";
 	protected static String naics_code="721";
@@ -181,7 +197,13 @@ public class ValidationData{
 	protected static String crypto_alias="java_wallet";
 	//protected static String businessType="corporation";
 	protected static String entity_name="test Corporation";
-	protected static String identityValue ="574-86-1689"; 
+	protected static String identity_alias ="EIN"; 
+	protected static String identityValue ="123452222"; 
+	protected static String businessEntityName ="corporate"; 
+	protected static String doingBusiness_As ="doing business as"; 
+	//protected static String type ="business"; 
+
+
 	
 	
 	

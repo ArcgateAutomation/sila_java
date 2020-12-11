@@ -6,10 +6,8 @@ import org.testng.annotations.Test;
 import com.silamoney.client.api.ApiResponse;
 import com.silamoney.client.domain.BaseResponse;
 import com.silamoney.common_files.Base_class;
-
 import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Step;
+
 
 
 

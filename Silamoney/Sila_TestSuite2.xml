@@ -5,12 +5,11 @@
 <suite name="Silamoney Java SDK "> 
 
 	<test name="API">
-		<classes>    
-			<class name="dummyTestcases.Register"/>
-			<class name="dummyTestcases.Request_kyc"/>  
-		    <class name="dummyTestcases.Link_account"/>  
-			<class name="dummyTestcases.Get_account"/> 
-			
+		<classes>   
+
+			<class name="sila_test_cases.Request_kyc"/>  
+			<class name="sila_test_cases.Register_wallet"/>  
+			<class name="sila_test_cases.Update_wallet"/> 
 		</classes>
 	</test>
 	

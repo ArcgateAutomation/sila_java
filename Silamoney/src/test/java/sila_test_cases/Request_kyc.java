@@ -24,31 +24,21 @@ public class Request_kyc extends Base_class {
 	@Test(priority=1)
 	@Description("Request KYC without kyc_level entity")
 	public void Test_01_Request_KYC_Without_kyc_level_entity() throws Exception {	
-		LocalDate birthdate = new LocalDate(2000, 01, 31);
-		User user2 = new User(handle22,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
-		postalCode,  phone,  email, identityNumber, Utility.getuser22CryptoAddress(), birthdate.toDate(), country);
-		reader.setCellData(sheetName, privatekeys, 2, Utility.getuser22PrivateKey());
-		api.register(user2);
-		Thread.sleep(3000);
-		ApiResponse response= api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
+		api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);
 		
-		//User3
-		User user3 = new User(handle23,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city,  state, 
-		postalCode,  phone,  email, identityNumber, Utility.getuser23CryptoAddress(), birthdate.toDate(), country);
-		reader.setCellData(sheetName, privatekeys, 3, Utility.getuser23PrivateKey());
-		api.register(user3);
-		Thread.sleep(3000);
 		api.requestKYC(handle23, null, reader.getCellData(sheetName, privatekeys, 3));
 		Thread.sleep(3000);
 		
-		
+		ApiResponse response=api.requestKYC(handle24, null, reader.getCellData(sheetName, privatekeys, 4));
+		Thread.sleep(3000);
+
 		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);		
 		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(), statusTrue);
 		Assert.assertNotEquals(((BaseResponse)response.getData()).getReference(), refNotEmpty);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), successKYCMessage22);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), Handle_24+" submitted for KYC review.");
 
 	}
 	
@@ -57,7 +47,6 @@ public class Request_kyc extends Base_class {
 	@Test(priority=2)
 	@Description("Request KYC with empty kyc_level field")
 	public void Test_02_Request_KYC_With_empty_kyc_level_field() throws Exception {
-		//test=extent.createTest("RequestKYC_02: Request KYC with empty kyc_level field");	
 		ApiResponse response = api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
@@ -73,7 +62,6 @@ public class Request_kyc extends Base_class {
 	@Test(priority=3)
 	@Description("Request KYC with empty user_handle")
 	public void Test_03_Request_KYC_With_empty_user_handle() throws Exception {	
-		//test=extent.createTest("RequestKYC_03: Request KYC with empty user_handle");
 		ApiResponse response = api.requestKYC("", null, reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);
 		Assert.assertEquals(response.getStatusCode(), 400);
@@ -105,10 +93,7 @@ public class Request_kyc extends Base_class {
 	@Test(priority=5)
 	@Description("Request KYC with kyc_level not configured/approved for auth_handle in current environment.")
 	public void Test_05_Request_KYC_With_403() throws BadRequestException, InvalidSignatureException, ServerSideException, IOException,
-	InterruptedException, ForbiddenException{
-		//test=extent.createTest("RequestKYC_05: Request KYC with kyc_level not configured/approved for auth_handle in current environment.");		
-		
-		
+	InterruptedException, ForbiddenException{		
 		ApiResponse response = api.requestKYC(handle22, "FAIL", reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);
 		Assert.assertEquals(response.getStatusCode(), 403);

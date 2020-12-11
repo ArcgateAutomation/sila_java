@@ -103,140 +103,7 @@ public class Upload_document extends Base_class{
 
 		}
 
-		@Test(priority = 5)
-		@Description("Verify user is not able to upload document with .csv extension file")
-		public void Test_05_upload_document_with_csv_extension_file() throws Exception {	
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file01.csv").filename("dummy") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") .build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
 
-		}
-
-
-		@Test(priority = 6)
-		@Description("Verify user is not able to upload document with .txt extension file")
-		public void Test_06_upload_document_with_txt_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file02.txt").filename("invalid_format_file02") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-
-		}
-
-		@Test(priority = 7)
-		@Description("Verify user is not able to upload document with .docx Extension file")
-		public void Test_07_upload_document_with_docx_extension_file() throws Exception {	
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file03.docx").filename("invalid_format_file03") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-		@Test(priority = 8)
-		@Description("Verify user is not able to upload document with .xlsx Extension file")
-		public void Test_08_upload_document_with_xlsx_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file04.xlsx").filename("invalid_format_file04") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		
-		}
-
-		@Test(priority = 9)
-		@Description("Verify user is not able to upload document with .xls Extension file")
-		public void Test_09_upload_document_with_xls_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file05.xls").filename("invalid_format_file05") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-		@Test(priority = 10)
-		@Description("Verify user is not able to upload document with .webp Extension file")
-		public void Test_10_upload_document_with_webp_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file06.webp").filename("invalid_format_file06") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-		@Test(priority = 11)
-		@Description("Verify user is not able to upload document with .tiff Extension file")
-		public void Test_11_upload_document_with_tiff_extension_file() throws Exception {	
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file07.tiff").filename("invalid_format_file07") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-		@Test(priority = 12)
-		@Description("Verify user is not able to upload document with .svg Extension file")
-		public void Test_12_upload_document_with_svg_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file08.svg").filename("invalid_format_file08") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-
-		@Test(priority = 13)
-		@Description("Verify user is not able to upload document with .gif Extension file")
-		public void Test_13_upload_document_with_gif_extension_file() throws Exception {	
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file09.gif").filename("invalid_format_file09") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
-
-		@Test(priority = 14)
-		@Description("Verify user is not able to upload document with .ico Extension file")
-		public void Test_14_upload_document_with_ico_extension_file() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy_file10.ico").filename("invalid_format_file10") 
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Invalid document_type");
-		}
 
 
 		@Test(priority = 15)
@@ -265,19 +132,6 @@ public class Upload_document extends Base_class{
 		Assert.assertEquals(response.getSuccess(), successFalse);
 		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
 		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg);
-		}
-
-		@Test(priority = 17)
-		@Description("Verify user is not able to upload document with invalid filename including the file extension")
-		public void Test_17_upload_document_with_invalid_filename_field() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image.png")
-		       .mimeType("image/png").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") .build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg);
 		}
 
 
@@ -312,103 +166,137 @@ public class Upload_document extends Base_class{
 		 Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg);
 		}
 
-		@Test(priority = 20)
-		@Description("Verify upload document with invalid mime_type field")
-		public void Test_20_upload_document_with_invalid_mime_type_field() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
-		       .mimeType("image/pngtest").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
 		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"Unsupported MIME type: image/pngtest.");
-		}
-
-
-		@Test(priority = 21)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 01")
-		public void Test_21_upload_document_with_different_mime_type_from_image_extension_01() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
-		       .mimeType("image/jpeg").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);
-		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		}
-		
-		@Test(priority = 22)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 02")
-		public void Test_22_upload_document_with_different_mime_type_from_image_extension_02() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description").build();
-		ApiResponse response = api.uploadDocument(message);		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);		
-		}
-
-		@Test(priority = 23)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 03")
-		public void Test_23_upload_document_with_different_mime_type_from_image_extension_03() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/jpg_image.jpg").filename("jpg_image")
-		       .mimeType("image/png").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") 
-		       .build();
-		ApiResponse response = api.uploadDocument(message);
-		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
+		  @Test(priority = 20)
+		  
+		  @Description("Verify upload document with invalid mime_type field") public
+		  void Test_20_upload_document_with_invalid_mime_type_field() throws Exception { 
+			  UploadDocumentMessage message =UploadDocumentMessage.builder().userHandle(handle28).userPrivateKey(reader.getCellData(sheetName, privatekeys,8))
+					  .filePath(workingDir+"/TestData/png_image.png").filename("png_image") .mimeType("image/pngtest").documentType("id_drivers_permit")
+					  .identityType("license").name("id") .description("some file description").build();
+		  ApiResponse response = api.uploadDocument(message);
+		  
+		  Assert.assertEquals(response.getStatusCode(), 400);
+		  Assert.assertEquals(response.getSuccess(), successFalse);
+		  Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		  statusFalse);
+		  Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "Unsupported MIME type: image/pngtest."); 
+		  }
 		 
-		}
-
-		@Test(priority = 24)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 04")
-		public void Test_24_upload_document_with_different_mime_type_from_image_extension_04() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/jpg_image.jpg").filename("jpg_image")
-		       .mimeType("application/pdf").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") 
-		       .build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);		
-		
-		}
-
-		@Test(priority = 25)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 04")
-		public void Test_25_upload_document_with_different_mime_type_from_image_extension_05() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy.pdf").filename("dummy_pdf")
-		       .mimeType("image/png").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") 
-		       .build();
-		ApiResponse response = api.uploadDocument(message);
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		
-		}
-
-		@Test(priority = 26)
-		@Description("Verify user is not able to upload document with different mime_type from image extension 06")
-		public void Test_26_upload_document_with_different_mime_type_from_image_extension_06() throws Exception {
-		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/dummy.pdf").filename("dummy_pdf")
-		       .mimeType("image/jpeg").documentType("id_drivers_permit").identityType("license").name("id") .description("some file description") 
-		       .build();
-		ApiResponse response = api.uploadDocument(message);
-		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		 Assert.assertEquals(response.getSuccess(), successFalse);
-		 Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-		
-		}
+		 /*	 * 
+		 * @Test(priority = 21)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 01"
+		 * ) public void
+		 * Test_21_upload_document_with_different_mime_type_from_image_extension_01()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
+		 * .mimeType("image/jpeg").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description").build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * 
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse); }
+		 * 
+		 * @Test(priority = 22)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 02"
+		 * ) public void
+		 * Test_22_upload_document_with_different_mime_type_from_image_extension_02()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
+		 * .mimeType("application/pdf").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description").build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse); }
+		 * 
+		 * @Test(priority = 23)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 03"
+		 * ) public void
+		 * Test_23_upload_document_with_different_mime_type_from_image_extension_03()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/jpg_image.jpg").filename("jpg_image")
+		 * .mimeType("image/png").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description") .build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * 
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse);
+		 * 
+		 * }
+		 * 
+		 * @Test(priority = 24)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 04"
+		 * ) public void
+		 * Test_24_upload_document_with_different_mime_type_from_image_extension_04()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/jpg_image.jpg").filename("jpg_image")
+		 * .mimeType("application/pdf").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description") .build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse);
+		 * 
+		 * }
+		 * 
+		 * @Test(priority = 25)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 04"
+		 * ) public void
+		 * Test_25_upload_document_with_different_mime_type_from_image_extension_05()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/dummy.pdf").filename("dummy_pdf")
+		 * .mimeType("image/png").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description") .build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse);
+		 * 
+		 * }
+		 * 
+		 * @Test(priority = 26)
+		 * 
+		 * @Description("Verify user is not able to upload document with different mime_type from image extension 06"
+		 * ) public void
+		 * Test_26_upload_document_with_different_mime_type_from_image_extension_06()
+		 * throws Exception { UploadDocumentMessage message =
+		 * UploadDocumentMessage.builder().userHandle(handle28)
+		 * .userPrivateKey(reader.getCellData(sheetName, privatekeys,
+		 * 8)).filePath(workingDir+"/TestData/dummy.pdf").filename("dummy_pdf")
+		 * .mimeType("image/jpeg").documentType("id_drivers_permit").identityType(
+		 * "license").name("id") .description("some file description") .build();
+		 * ApiResponse response = api.uploadDocument(message);
+		 * 
+		 * Assert.assertEquals(response.getStatusCode(), 400);
+		 * Assert.assertEquals(response.getSuccess(), successFalse);
+		 * Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),
+		 * statusFalse);
+		 * 
+		 * }
+		 */
 
 		@Test(priority = 27)
 		@Description("Verify user is not able to upload document with empty document_type field")
@@ -1047,11 +935,11 @@ public class Upload_document extends Base_class{
 		// not working as expected please check once. Getting 400 status code instead of 200.
 		@Test(priority = 63)
 		@Description("Verify user is able to upload document with empty description fields")
-		public void Test_63_upload_document_with_empty_description_fields() throws Exception {		 		
+		public void Test_63_upload_document_with_empty_description_fields() throws Exception {		 			
 		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
-		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
-		       .mimeType("image/png").documentType("tax_1040").identityType("other").name("id") .description("") 
-		       .build();
+			       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 8)).filePath(workingDir+"/TestData/png_image.png").filename("png_image")
+			       .mimeType("image/png").documentType("tax_W4").identityType("other").name("id") .description("") 
+			       .build();
 		ApiResponse response = api.uploadDocument(message);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		DocumentsResponse parsedResponse = (DocumentsResponse) response.getData();
@@ -1088,6 +976,7 @@ public class Upload_document extends Base_class{
 		       .build();
 		ApiResponse response = api1.uploadDocument(message);
 		
+		System.out.println("Test_65_upload_document_with_invalid_file_signature: "+((BaseResponse)response.getData()).getMessage());
 		Assert.assertEquals(response.getStatusCode(), 403);
 		Assert.assertEquals(response.getSuccess(), successFalse);
 		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
@@ -1098,7 +987,7 @@ public class Upload_document extends Base_class{
 		// not working. please check once.
 		@Test(priority = 66)
 		@Description("Verify user is not able to upload document with different crypto key")
-		public void Test_66_upload_document_with_invalid_file_signature() throws Exception {
+		public void Test_66_upload_document_with_another_crytp_key() throws Exception {
 		UploadDocumentMessage message = UploadDocumentMessage.builder().userHandle(handle28)
 		       .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).filePath(workingDir+"/TestData/png_image.png").filename("jpg_image")
 		       .mimeType("application/pdf").documentType("tax_1040").identityType("test").name("id") .description("some file description") 

@@ -16,8 +16,7 @@ public class Link_account extends Base_class{
 	@Test(priority=1)
 	@Description("Link account with all valid Data")
 	public void Test_01_Link_account_with_all_valid_data() throws Exception {
-		ApiResponse response2 = api.linkAccount(handle22, reader.getCellData(sheetName, privatekeys, 2), validPlaidAccountName, validPublicToken);
-		//ApiResponse response3 = api.linkAccount(handle23, reader.getCellData(sheetName, privatekeys, 3), validAccountName, validPublicToken);
+		api.linkAccount(handle22, reader.getCellData(sheetName, privatekeys, 2), validPlaidAccountName, validPublicToken);
 		ApiResponse response4 = api.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), validPlaidAccountName, validPublicToken);
 		
 		Assert.assertEquals(response4.getStatusCode(), successStatusCode);
@@ -65,7 +64,7 @@ public class Link_account extends Base_class{
 	@Description("Link account with empty Public_Token")
 	public void Test_04_Link_account_with_empty_Public_Token() throws Exception {
 		//test=extent.createTest("LinkAccount_03: Link account with empty Public_Token");	
-		ApiResponse response = api.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), validAccountName, emptyPublicToken);
+		ApiResponse response = api.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), validAccountName, "");
 
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -79,9 +78,9 @@ public class Link_account extends Base_class{
 	
 
 	@Test(priority=5)
-	@Description("Link account with empty account name")
-	public void Test_05_Link_account_with_empty_account_name() throws Exception {
-		ApiResponse response = api.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), emptyAccountName, validPublicToken);
+	@Description("Link plaid account with empty account name")
+	public void Test_05_Link_plaid_account_with_empty_account_name() throws Exception {
+		ApiResponse response = api.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), "", validPublicToken);
 
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
@@ -143,8 +142,7 @@ public class Link_account extends Base_class{
 	@Test(priority=9)
 	@Description("Link account with invalid signature")
 	public void Test_09_Link_account_with_invalid_signature() throws Exception {
-		//test=extent.createTest("LinkAccount_07: Link account with invalid signature");	
-		ApiResponse response = api1.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), accountNameWith40Chars, validPublicToken);
+		ApiResponse response = api1.linkAccount(handle24, reader.getCellData(sheetName, privatekeys, 4), validAccountName, validPublicToken);
 		
 		Assert.assertEquals(response.getStatusCode(), 401);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -217,7 +215,7 @@ public class Link_account extends Base_class{
 	@Test(priority=14)
 	@Description("Link direct link account with empty account name")
 	public void link_direct_link_account_with_empty_account_name() throws Exception {
-		ApiResponse response = api.linkAccount(handle23, reader.getCellData(sheetName, privatekeys, 3), validAccountName, emptyAccountNumber, routingNumber, accountType);
+		ApiResponse response = api.linkAccount(handle23, reader.getCellData(sheetName, privatekeys, 3), "", emptyAccountNumber, routingNumber, accountType);
 		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);

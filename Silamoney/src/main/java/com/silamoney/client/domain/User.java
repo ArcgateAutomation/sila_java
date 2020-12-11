@@ -15,6 +15,8 @@ public class User {
     private final String firstName;
 
     private final String lastName;
+    
+    private final String entity_name;
 
     private final String address;
 
@@ -56,10 +58,11 @@ public class User {
      * @param birthdate
      * @param country
      */
-    public User(String handle, String firstName, String lastName, String address, @Nullable String address2, String city, String state, String zipCode, String phone, String email, String identityNumber, String cryptoAddress, Date birthdate, String country) {
+    public User(String handle, String firstName, String lastName, String entity_name, String address, @Nullable String address2, String city, String state, String zipCode, String phone, String email, String identityNumber, String cryptoAddress, Date birthdate, String country) {
         this.handle = handle;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.entity_name = entity_name;
         this.address = address;
         this.address2 = address2;
         this.city = city;
@@ -95,6 +98,15 @@ public class User {
      */
     public String getLastName() {
         return lastName;
+    }
+    
+    
+    /**
+     * Gets the user entity_name
+     * @return entity_name
+     */
+    public String getentity_name() {
+        return entity_name;
     }
 
     /**

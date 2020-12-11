@@ -32,13 +32,7 @@ public class Register_add_registration_data extends Base_class {
 //Add email test cases	
 	@Test(priority = 1)
 	@Description("Check add registration with empty user_handle")
-	public void test_001_registration_add_email_with_empty_user_handle() throws Exception {
-	LocalDate birthdate = new LocalDate(2000, 01, 31);
-	User user1 = new User(handle26,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city, state, postalCode,  phone,  email, identityNumber, Utility.getuser26CryptoAddress(), birthdate.toDate(), country);
-	reader.setCellData(sheetName, privatekeys, 6, Utility.getuser26PrivateKey());
-	reader.setCellData(sheetName, cryptoAddress, 6, Utility.getuser26CryptoAddress());
-	api.register(user1);
-	Thread.sleep(3000);
+	public void test_001_registration_add_email_with_empty_user_handle() throws Exception {	
 //Get Entity
 	ApiResponse response4 = api.getEntity(handle26, reader.getCellData(sheetName, privatekeys, 6));
 	GetEntityResponse entityResponse = (GetEntityResponse) response4.getData();
@@ -377,11 +371,11 @@ public class Register_add_registration_data extends Base_class {
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
 
-	Assert.assertEquals(response.getStatusCode(), 403);
+	Assert.assertEquals(response.getStatusCode(), 400);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-	String Expected_Err_Mgs="Failed to authenticate user signature. The derived address "+Base_class.reader.getCellData(Base_class.sheetName, Base_class.cryptoAddress, 6)+" is not registered to "+Base_class.Handle_22+".";
-	Assert.assertEquals(((BaseResponse) response.getData()).getMessage().toLowerCase(), Expected_Err_Mgs.toLowerCase());
+	//String Expected_Err_Mgs="Failed to authenticate user signature. The derived address "+Base_class.reader.getCellData(Base_class.sheetName, Base_class.cryptoAddress, 6)+" is not registered to "+Base_class.Handle_22+".";
+	Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
 	}	
 	
 	
@@ -921,11 +915,17 @@ public class Register_add_registration_data extends Base_class {
 	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state("00").country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message);
+	  
+	  
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
+		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
+		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
 
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
 		}		
 		
 
