@@ -13,7 +13,7 @@ import com.silamoney.common_files.Base_class;
 import com.silamoney.common_files.Utility;
 import io.qameta.allure.Description;
 
-public class Upload_document extends Base_class{
+public class Test15_Upload_document extends Base_class{
 		
 
 		@Test(priority = 1)

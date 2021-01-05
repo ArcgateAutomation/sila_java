@@ -10,7 +10,7 @@ import com.silamoney.client.domain.LinkBusinessOperationResponse;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
-public class Unlink_business_member extends Base_class {
+public class Test05_Unlink_business_member extends Base_class {
 	
 	
 

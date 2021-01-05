@@ -3,96 +3,53 @@
 <suite name="Failed suite [Silamoney Java SDK ]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="API(failed)">
     <classes>
-      <class name="sila_test_cases.Registration">
+      <class name="sila_test_cases.Test02_Registration">
         <methods>
-          <include name="TearUp"/>
-          <include name="Test_42_register_with_empty_country_field"/>
-          <include name="StartClass"/>
-          <include name="Test_20_register_with_empty_state_field"/>
-          <include name="Test_05_register_with_empty_street_address_1_field"/>
-          <include name="Test_29_register_with_minimum_1_length_postal_code_field"/>
-          <include name="Test_28_register_with_empty_postal_code_field"/>
-          <include name="Test_16_register_with_empty_city_field"/>
-          <include name="TearDown"/>
           <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="StartTest"/>
           <include name="Test_51_register_with_2_characters_entity_name"/>
-          <include name="Test_52_register_with_41_characters_entity_name"/>
-          <include name="StartTest"/>
-          <include name="Endtest"/>
-        </methods>
-      </class> <!-- sila_test_cases.Registration -->
-      <class name="sila_test_cases.Link_account">
-        <methods>
-          <include name="EndClass"/>
-          <include name="TearUp"/>
-          <include name="link_direct_link_account_with_10_characters_account_type"/>
-          <include name="Test_05_Link_plaid_account_with_empty_account_name"/>
-          <include name="StartClass"/>
-          <include name="link_direct_link_account_with_empty_account_type"/>
-          <include name="link_direct_link_account_with_empty_account_name"/>
-          <include name="StartTest"/>
           <include name="TearDown"/>
           <include name="Endtest"/>
         </methods>
-      </class> <!-- sila_test_cases.Link_account -->
-      <class name="sila_test_cases.Register_add_registration_data">
+      </class> <!-- sila_test_cases.Test02_Registration -->
+      <class name="sila_test_cases.Test03_Register_business_user">
         <methods>
           <include name="EndClass"/>
           <include name="TearUp"/>
-          <include name="test_045_registration_add_address_with_empty_postal_code"/>
-          <include name="test_006_registration_add_email_with_more_than_max_email_length"/>
-          <include name="test_049_registration_add_address_with_empty_country"/>
-          <include name="StartClass"/>
-          <include name="test_041_registration_add_address_with_empty_state"/>
-          <include name="test_037_registration_add_address_with_empty_city"/>
-          <include name="test_27_registration_add_address_with_empty_street_address_1"/>
-          <include name="StartTest"/>
-          <include name="TearDown"/>
-          <include name="Endtest"/>
-        </methods>
-      </class> <!-- sila_test_cases.Register_add_registration_data -->
-      <class name="sila_test_cases.Register_update_registration_data">
-        <methods>
-          <include name="test_033_registration_update_address_with_empty_city"/>
-          <include name="test_006_registration_update_email_with_more_than_max_email_length"/>
-          <include name="TearUp"/>
-          <include name="StartClass"/>
-          <include name="test_021_registration_update_address_with_empty_address_alias"/>
-          <include name="TearDown"/>
-          <include name="EndClass"/>
-          <include name="test_056_registration_update_entity_name_less_than_3_characters"/>
-          <include name="test_057_registration_update_entity_name_more_than_40_characters"/>
-          <include name="test_023_registration_update_address_with_empty_street_address_1"/>
-          <include name="test_037_registration_update_address_with_empty_state"/>
-          <include name="StartTest"/>
-          <include name="Endtest"/>
-        </methods>
-      </class> <!-- sila_test_cases.Register_update_registration_data -->
-      <class name="sila_test_cases.Get_account">
-        <methods>
-          <include name="Test_03_Get_account_with_another_private_key"/>
-          <include name="EndClass"/>
-          <include name="TearUp"/>
-          <include name="StartClass"/>
-          <include name="Test_08_Get_account_with_another_private_key"/>
-          <include name="StartTest"/>
-          <include name="TearDown"/>
-          <include name="Endtest"/>
-        </methods>
-      </class> <!-- sila_test_cases.Get_account -->
-      <class name="sila_test_cases.Register_business_user">
-        <methods>
-          <include name="EndClass"/>
-          <include name="TearUp"/>
-          <include name="test_07_register_business_with_empty_business_website"/>
           <include name="StartClass"/>
           <include name="test_09_register_business_doingBusiness_As"/>
           <include name="StartTest"/>
+          <include name="test_07_register_business_with_empty_business_website"/>
           <include name="TearDown"/>
           <include name="Endtest"/>
         </methods>
-      </class> <!-- sila_test_cases.Register_business_user -->
-      <class name="sila_test_cases.Upload_document">
+      </class> <!-- sila_test_cases.Test03_Register_business_user -->
+      <class name="sila_test_cases.Test20_Get_account">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="Test_08_Get_account_with_another_private_key"/>
+          <include name="StartClass"/>
+          <include name="Test_03_Get_account_with_another_private_key"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test20_Get_account -->
+      <class name="sila_test_cases.Test32_Transfer_sila">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="StartTest"/>
+          <include name="test_05_transfer_sila_with_empty_descriptor_field"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test32_Transfer_sila -->
+      <class name="sila_test_cases.Test15_Upload_document">
         <methods>
           <include name="EndClass"/>
           <include name="TearUp"/>
@@ -102,7 +59,79 @@
           <include name="TearDown"/>
           <include name="Endtest"/>
         </methods>
-      </class> <!-- sila_test_cases.Upload_document -->
+      </class> <!-- sila_test_cases.Test15_Upload_document -->
+      <class name="sila_test_cases.Test13_Register_update_registration_data">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="test_006_registration_update_email_with_more_than_max_email_length"/>
+          <include name="test_056_registration_update_entity_name_less_than_3_characters"/>
+          <include name="test_057_registration_update_entity_name_more_than_40_characters"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test13_Register_update_registration_data -->
+      <class name="sila_test_cases.Test30_Issue_sila">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="test_09_issue_sila_with_empty_descriptor_field"/>
+          <include name="test_12_issue_sila_with_empty_business_uuid"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test30_Issue_sila -->
+      <class name="sila_test_cases.Test10_Certify_beneficial_owner">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="test_16_Certify_beficial_owner_with_all_valid_data"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test10_Certify_beneficial_owner -->
+      <class name="sila_test_cases.Test18_Link_account">
+        <methods>
+          <include name="EndClass"/>
+          <include name="link_direct_link_account_with_10_characters_account_type"/>
+          <include name="TearUp"/>
+          <include name="link_direct_link_account_with_empty_account_type"/>
+          <include name="StartClass"/>
+          <include name="Test_05_Link_plaid_account_with_empty_account_name"/>
+          <include name="link_direct_link_account_with_empty_account_name"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test18_Link_account -->
+      <class name="sila_test_cases.Test11_Certify_business">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="test_10_Certify_business_with_all_valid_details"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test11_Certify_business -->
+      <class name="sila_test_cases.Test12_Register_add_registration_data">
+        <methods>
+          <include name="test_006_registration_add_email_with_more_than_max_email_length"/>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="StartClass"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test12_Register_add_registration_data -->
     </classes>
   </test> <!-- API(failed) -->
 </suite> <!-- Failed suite [Silamoney Java SDK ] -->

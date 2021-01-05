@@ -7,7 +7,7 @@ import com.silamoney.client.domain.BaseResponse;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
-public class Get_wallet extends Base_class {
+public class Test23_Get_wallet extends Base_class {
 		@Test(priority = 1)
 		@Description("Get wallet details for with all valid data")
 		public void test_001_get_wallet_details_with_valid_data() throws Exception {

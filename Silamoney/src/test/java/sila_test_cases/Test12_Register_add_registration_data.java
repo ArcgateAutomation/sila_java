@@ -1,6 +1,5 @@
 package sila_test_cases;
 
-import org.joda.time.LocalDate;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.silamoney.client.api.ApiResponse;
@@ -16,14 +15,12 @@ import com.silamoney.client.domain.IdentityResponse;
 import com.silamoney.client.domain.PhoneMessage;
 import com.silamoney.client.domain.PhoneResponse;
 import com.silamoney.client.domain.RegistrationDataEnum;
-import com.silamoney.client.domain.User;
 import com.silamoney.client.domain.UserHandleMessage;
 import com.silamoney.common_files.Base_class;
-import com.silamoney.common_files.Utility;
 
 import io.qameta.allure.Description;
 
-public class Register_add_registration_data extends Base_class {
+public class Test12_Register_add_registration_data extends Base_class {
 	
 	public String identityUuid="";
 	public String addressUuid="";
@@ -34,12 +31,15 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check add registration with empty user_handle")
 	public void test_001_registration_add_email_with_empty_user_handle() throws Exception {	
 //Get Entity
-	ApiResponse response4 = api.getEntity(handle26, reader.getCellData(sheetName, privatekeys, 6));
+	ApiResponse response4 = api.getEntity(handle27, reader.getCellData(sheetName, privatekeys, 7));
 	GetEntityResponse entityResponse = (GetEntityResponse) response4.getData();
 	identityUuid=entityResponse.getIdentities().get(0).getUuid();
 	addressUuid=entityResponse.getAddresses().get(0).getUuid();	
 	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	//reader.setCellData(sheetName, "addressUUID", 2, entityResponse.getIdentities().get(0).getUuid());
+	//reader.setCellData(sheetName, "addressUUID", 3, entityResponse.getAddresses().get(0).getUuid());
+	
+	UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(addNewEmail).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -55,8 +55,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check add registration with empty email field")
 	public void test_002_registration_add_empty_email_field() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email("").build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -71,7 +71,7 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check add registration with invalid private_key")
 	public void test_003_registration_add_email_with_invalid_private_key() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(invalidPrivateKey)
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(invalidPrivateKey)
 	.build();
 	EmailMessage message = EmailMessage.builder().email(addNewEmail).build();
 	ApiResponse response = api.addEmail(user, message);
@@ -88,7 +88,7 @@ public class Register_add_registration_data extends Base_class {
 	public void test_004_registration_add_email_with_not_registered_handle() throws Exception {
 
 	UserHandleMessage user = UserHandleMessage.builder().userHandle(handleNotRegistered)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(addNewEmail).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -103,8 +103,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check add registration with invalid email format")
 	public void test_005_registration_add_invalid_email() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(invalid_Email).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -119,8 +119,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check add registration with more than max email length")
 	public void test_006_registration_add_email_with_more_than_max_email_length() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(above_max_length_email).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -135,8 +135,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is  able to add email with 254 characters.")
 	public void test_007_registration_add_email_successfully_with_254_characters_email() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(max_length_email).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -145,7 +145,7 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getSuccess(), successTrue);
 	EmailResponse parsedResponse = (EmailResponse) response.getData();
 	Assert.assertEquals(parsedResponse.getStatus(), "SUCCESS");
-	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added email to user " + Handle_26 + ".");
+	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added email to user " + Handle_27 + ".");
 	Assert.assertNotNull(parsedResponse.getEmail().getAddedEpoch());
 	Assert.assertNotNull(parsedResponse.getEmail().getModifiedEpoch());
 	Assert.assertNotNull(parsedResponse.getEmail().getUuid());
@@ -157,8 +157,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Check registration add email with all valid data")
 	public void test_008_registration_add_email_with_all_valid_data() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	EmailMessage message = EmailMessage.builder().email(addNewEmail).build();
 	ApiResponse response = api.addEmail(user, message);
 	Thread.sleep(3000);
@@ -167,7 +167,7 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getSuccess(), successTrue);
 	EmailResponse parsedResponse = (EmailResponse) response.getData();
 	Assert.assertEquals(parsedResponse.getStatus(), "SUCCESS");
-	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added email to user " + Handle_26 + ".");
+	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added email to user " + Handle_27 + ".");
 	Assert.assertNotNull(parsedResponse.getEmail().getAddedEpoch());
 	Assert.assertNotNull(parsedResponse.getEmail().getModifiedEpoch());
 	Assert.assertNotNull(parsedResponse.getEmail().getUuid());
@@ -180,8 +180,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add identity when phone is empty.")
 	public void test_009_registration_add_phone_num_with_empty_phone_field() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	PhoneMessage message = PhoneMessage.builder().phone("").build();
 	ApiResponse response = api.addPhone(user, message);
 	Thread.sleep(3000);
@@ -196,8 +196,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add phone number when phone is invalid.")
 	public void test_010_registration_add_invalid_phone_number() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	PhoneMessage message = PhoneMessage.builder().phone("test").build();
 	ApiResponse response = api.addPhone(user, message);
 	Thread.sleep(3000);
@@ -212,8 +212,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add phone number when phone is less than 10 digits")
 	public void test_010_registration_add_less_than_10_digits_phone_number() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	PhoneMessage message = PhoneMessage.builder().phone("245-985-999").build();
 	ApiResponse response = api.addPhone(user, message);
 	Thread.sleep(3000);
@@ -228,8 +228,8 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add phone number when phone is more than 11 digits")
 	public void test_012_registration_add_more_than_11_digits_phone_number() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26)
-	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27)
+	.userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	PhoneMessage message = PhoneMessage.builder().phone("958-858-989856").build();
 	ApiResponse response = api.addPhone(user, message);
 	Thread.sleep(3000);
@@ -244,7 +244,7 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add phone number when 10 digits phone field")
 	public void test_013_registration_add_10_digits_phone_number_successfully() throws Exception {
 
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	PhoneMessage message = PhoneMessage.builder().phone(addNewPhone).build();
 	ApiResponse response = api.addPhone(user, message);
 	Thread.sleep(3000);
@@ -253,7 +253,7 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getSuccess(), successTrue);
 	PhoneResponse parsedResponse = (PhoneResponse) response.getData();
 	Assert.assertEquals(parsedResponse.getStatus(), "SUCCESS");
-	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added phone to user " + Handle_26 + ".");
+	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added phone to user " + Handle_27 + ".");
 	Assert.assertNotNull(parsedResponse.getPhone().getAddedEpoch());
 	Assert.assertNotNull(parsedResponse.getPhone().getModifiedEpoch());
 	Assert.assertNotNull(parsedResponse.getPhone().getUuid());
@@ -269,7 +269,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 14)
 	@Description("Verify user is not able to add identity when user_handle is empty.")
 	public void test_014_registration_add_identity_with_empty_user_handle() throws Exception {
-    UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+    UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
     IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -284,7 +284,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 15)
 	@Description("Verify user is not able to add identity alias value when field is empty")
 	public void test_015_Registration_add_empty_identity_alias() throws Exception {
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -302,7 +302,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 16)
 	@Description("Verify user is not able to add identity alias value when field is empty")
 	public void test_016_registration_add_empty_identity_value() throws Exception {
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue("").build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -318,7 +318,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 17)
 	@Description("Verify user is not able to add identity with invalid identity alias field in payload.")
 	public void test_017_registration_add_invalid_identity_alias() throws Exception {	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("test").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -334,7 +334,7 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add lowercase identity alias value.")
 	public void test_018_registration_add_lowercase_identity_alias_value() throws Exception {
 	//Add identity	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("ssn").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -350,7 +350,7 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user is not able to add EIN to individual users.")
 	public void test_019_registration_add_identity_alias_value_as_EIN_to_individual_user() throws Exception {	
 	//Add identity	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("EIN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -366,7 +366,7 @@ public class Register_add_registration_data extends Base_class {
 	@Description("Verify user will not be able to add identity for individual with empty user_handle")
 	public void test_020_registration_add_individual_user_identity_with_empty_handle() throws Exception {			
 	//Add identity	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle("").userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -381,9 +381,10 @@ public class Register_add_registration_data extends Base_class {
 	
 	@Test(priority = 21)
 	@Description("Verify user will not be able to add identity for individual with different user_handle")
-	public void test_021_registration_add_individual_user_identity_with_another_user_handle() throws Exception {			
+	public void test_021_registration_add_individual_user_identity_with_another_user_handle() throws Exception {	
+		
 	//Add identity	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle22).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle22).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -391,7 +392,7 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getStatusCode(), 403);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-	String Expected_Err_Mgs="Failed to authenticate user signature. The derived address "+Base_class.reader.getCellData(Base_class.sheetName, Base_class.cryptoAddress, 6)+" is not registered to "+Base_class.Handle_22+".";
+	String Expected_Err_Mgs="Failed to authenticate user signature. The derived address "+Base_class.reader.getCellData(Base_class.sheetName, Base_class.cryptoAddress, 7)+" is not registered to "+Base_class.Handle_22+".";
 	Assert.assertEquals(((BaseResponse) response.getData()).getMessage().toLowerCase(), Expected_Err_Mgs.toLowerCase());
 	}	
 	
@@ -399,7 +400,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 22)
 	@Description("Verify user will not be able to add identity for individual with unregistered user_handle")
 	public void test_022_registration_add_individual_user_identity_with_unregistered_user_handle() throws Exception {	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handleNotRegistered).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handleNotRegistered).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -413,7 +414,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 23)
 	@Description("Verify user will not be able to add identity for individual with invalid auth_signature")
 	public void test_023_registration_add_individual_user_identity_with_invalid_auth_signature() throws Exception {	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api2.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -421,25 +422,25 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getStatusCode(), 403);
 	Assert.assertEquals(response.getSuccess(), successFalse);
 	Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-	Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), invalidSignErrorMsg5);
+	Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), "The requested app handle is forbidden access to the Sila platform.");
 	}
 	
 	
 	@Test(priority = 24)
 	@Description("Verify user is able to add identity for individual user successfully.")
 	public void test_024_registration_add_individual_user_identity_successfull() throws Exception {	
-	ApiResponse response4 = api.getEntity(handle26, reader.getCellData(sheetName, privatekeys, 6));
+	ApiResponse response4 = api.getEntity(handle27, reader.getCellData(sheetName, privatekeys, 7));
 	GetEntityResponse entityResponse = (GetEntityResponse) response4.getData();
 	String identityUuid1=entityResponse.getIdentities().get(0).getUuid();
 		
 	//Delete identity
-	DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(identityUuid1).build();
+	DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(identityUuid1).build();
 	api.deleteRegistrationData(RegistrationDataEnum.IDENTITY, message);
 	//BaseResponse parsedResponse1 = (BaseResponse) response2.getData();
 
 		
 	//Add identity	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message1 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message1);
 	Thread.sleep(3000);
@@ -448,7 +449,7 @@ public class Register_add_registration_data extends Base_class {
 	Assert.assertEquals(response.getSuccess(), successTrue);
 	IdentityResponse parsedResponse = (IdentityResponse) response.getData();
 	Assert.assertEquals(parsedResponse.getStatus(), "SUCCESS");
-	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added identity to user " + Handle_26 + ".");
+	Assert.assertEquals(parsedResponse.getMessage(), "Successfully added identity to user " + Handle_27 + ".");
 	Assert.assertNotNull(parsedResponse.getIdentity().getAddedEpoch());
 	Assert.assertNotNull(parsedResponse.getIdentity().getModifiedEpoch());
 	Assert.assertNotNull(parsedResponse.getIdentity().getUuid());
@@ -460,7 +461,7 @@ public class Register_add_registration_data extends Base_class {
 	@Test(priority = 25)
 	@Description("Verify user is not able to assigned identity value to already assigned user")
 	public void test_025_registration_add_identity_alias_value_to_already_assigned_user() throws Exception {	
-	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	IdentityMessage message2 = IdentityMessage.builder().identityAlias("SSN").identityValue(addNewIdentity).build();
 	ApiResponse response = api.addIdentity(user, message2);
 	Thread.sleep(3000);
@@ -480,14 +481,14 @@ public class Register_add_registration_data extends Base_class {
 	
 		
 		@Test(priority = 26)
-		@Description("Verify user is not able to add address when address_alias field is empty")
+		@Description("Verify user is able to add address when address_alias field is empty")
 		public void test_026_registration_add_address_with_empty_address_alias() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias("").streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
@@ -496,7 +497,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -507,19 +508,20 @@ public class Register_add_registration_data extends Base_class {
 		
 		
 		@Test(priority = 27)
-		@Description("Verify user is not able to add address with empty  street_address_1 field")
+		@Description("Verify user is able to add address with empty  street_address_1 field")
 		public void test_27_registration_add_address_with_empty_street_address_1() throws Exception {
 
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1("").streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
  
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		}		
 		
 
@@ -529,11 +531,11 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add less than 3 characters in street_address_1.")
 		public void test_028_registration_add_street_address_1_address_with_less_than_3_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1("at")
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -552,12 +554,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add 3 characters in the street_address_1")
 		public void test_029_registration_add_street_address_1_address_with_3_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1("ate")
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -567,7 +569,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -579,12 +581,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add 40 characters in street_address_1.")
 		public void test_030_registration_add_street_address_1_address_with_40_character() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(streetAddress_40Chars)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -594,7 +596,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -606,12 +608,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add more than 40 characters in street_address_1.")
 		public void test_031_registration_add_street_address_1_address_with_more_than_max_character() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(streetAddress_41Chars)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -628,12 +630,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add empty value in street address 2.")
 		public void test_032_registration_add_empty_street_address_2_address() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2("").city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
@@ -644,7 +646,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -658,12 +660,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add less than 3 characters in street_address_2.")
 		public void test_033_registration_add_street_address_2_address_with_less_than_3_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2("at").city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
@@ -679,12 +681,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add more than 40 characters in street_address_2.")
 		public void test_034_registration_add_street_address_2_address_with_more_than_max_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(streetAddress_41Chars).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
@@ -701,11 +703,11 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add 40 characters in street_address_2 successfully")
 		public void test_035_registration_add_street_address_2_address_with_40_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(streetAddress_40Chars).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -716,7 +718,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -729,11 +731,11 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add 3 characters in street_address_2 successfully")
 		public void test_036_registration_add_street_address_2_address_with_3_characters() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2("ate").city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
@@ -743,7 +745,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -759,20 +761,21 @@ public class Register_add_registration_data extends Base_class {
 			
 		
 		@Test(priority = 37)
-		@Description("Verify user is not able to add address when city field is empty in payload.")
+		@Description("Verify user is able to add address when city field is empty in payload.")
 		public void test_037_registration_add_address_with_empty_city() throws Exception {
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city("").state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 	  Thread.sleep(3000);
 	  
 
-	  Assert.assertEquals(response.getStatusCode(), 400);
-	  Assert.assertEquals(response.getSuccess(), successFalse);
-	  Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-	  Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		}		
 		
 		
@@ -780,12 +783,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add less than 2 characters in city name.")
 		public void test_038_registration_add_address_with_less_than_2_characters_city_name() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city("a").state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -803,12 +806,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add more than 40 characters in city name.")
 		public void test_039_registration_add_address_with_more_than_40_characters_city_name() throws Exception {	
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		 .uuid(addressUuid).build();
 		 api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(city41Chars).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -825,12 +828,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add 40 characters in city name.")
 		public void test_040_registration_add_address_with_40_characters_city_name() throws Exception {	
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(city40Chars).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -841,7 +844,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -852,19 +855,20 @@ public class Register_add_registration_data extends Base_class {
 		
 
 		@Test(priority = 41)
-		@Description("Verify user is not able to add address when state field is empty.")
+		@Description("Verify user is able to add address when state field is empty.")
 		public void test_041_registration_add_address_with_empty_state() throws Exception {
 
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state("").country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		}		
 		
 		
@@ -872,12 +876,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add address with less than 2 charcters state field")
 		public void test_042_registration_add_adress_with_less_than_2_chars_state_field() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state("O").country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -893,10 +897,10 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add address with more than 2 charcters state field")
 		public void test_043_registration_add_adress_with_more_than_2_chars_state_field() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage deleteMessage = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage deleteMessage = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, deleteMessage);		
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state("ORE").country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message);
@@ -912,7 +916,7 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add address when state field has invalid US abbreviations.")
 		public void test_044_registration_add_address_with_invalid_abbreviations_for_US_states() throws Exception {
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state("00").country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message);
 	  
@@ -921,7 +925,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -932,17 +936,18 @@ public class Register_add_registration_data extends Base_class {
 		
 		
 		@Test(priority = 45)
-		@Description("Verify user is not able to add address with empty postal code in payload.")
+		@Description("Verify user is able to add address with empty postal code in payload.")
 		public void test_045_registration_add_address_with_empty_postal_code() throws Exception {	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode("").build();
 	  ApiResponse response = api.addAddress(user, message);
 
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		}		
 		
 
@@ -951,12 +956,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add more than 10 digits postal code.")
 		public void test_046_registration_add_address_with_more_than_max_length_postal_code() throws Exception {	
 //Delete aaddress
-		DeleteRegistrationMessage deleteMessage = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage deleteMessage = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS,  deleteMessage);		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode("97204-525241").build();
 	  ApiResponse response = api.addAddress(user, message);
 
@@ -971,7 +976,7 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add 10 digits postal code successfully.")
 		public void test_047_registration_add_address_with_10_digitss_postal_code() throws Exception {	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode("9722543881").build();
 	  ApiResponse response = api.addAddress(user, message);
 	  
@@ -979,7 +984,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());
@@ -988,44 +993,45 @@ public class Register_add_registration_data extends Base_class {
 		
 		
 
-//		
-//		@Test(priority = 48)
-//		@Description("Verify user is able to add 1 digit postal code successfully.")
-//		public void test_048_registration_add_address_with_1_digit_postal_code() throws Exception {	
-//			//Add address	
-//			  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
-//			  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
-//			  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode("9").build();
-//			  ApiResponse response = api.addAddress(user, message3);
-//			  
-//				AddressResponse parsedResponse = (AddressResponse) response.getData();
-//				Assert.assertEquals(response.getStatusCode(), successStatusCode);
-//				Assert.assertEquals(response.getSuccess(), successTrue);
-//				Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-//				Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
-//				Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
-//				Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
-//				Assert.assertNotNull(parsedResponse.getAddress().getUuid());
-//				Assert.assertEquals(parsedResponse.getAddress().getPostalCode(), "5");
-//		}	
-//		
+		
+		@Test(priority = 48)
+		@Description("Verify user is able to add 1 digit postal code successfully.")
+		public void test_048_registration_add_address_with_1_digit_postal_code() throws Exception {	
+			//Add address	
+			  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
+			  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
+			  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode("92542").build();
+			  ApiResponse response = api.addAddress(user, message3);
+			  
+				AddressResponse parsedResponse = (AddressResponse) response.getData();
+				Assert.assertEquals(response.getStatusCode(), successStatusCode);
+				Assert.assertEquals(response.getSuccess(), successTrue);
+				Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+				Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
+				Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
+				Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
+				Assert.assertNotNull(parsedResponse.getAddress().getUuid());
+				Assert.assertEquals(parsedResponse.getAddress().getPostalCode(), "92542");
+		}	
+		
 
 		
 		
 
 		
 		@Test(priority = 49)
-		@Description("Verify user is not able to add address with empty country field in payload.")
+		@Description("Verify user is able to add address with empty country field in payload.")
 		public void test_049_registration_add_address_with_empty_country() throws Exception {
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country("").postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message);
 		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(), statusFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getMessage(), validationErrorMsg);
+		AddressResponse parsedResponse = (AddressResponse) response.getData();
+		Assert.assertEquals(response.getStatusCode(), successStatusCode);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		}		
 		
 		@Test(priority = 50)
@@ -1033,12 +1039,12 @@ public class Register_add_registration_data extends Base_class {
 		public void test_050_registration_add_address_with_another_country_name() throws Exception {
 	
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country("INDIA").postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 		
@@ -1055,13 +1061,13 @@ public class Register_add_registration_data extends Base_class {
 		public void test_051_registration_add_address_with_less_than_2_characters_country_name() throws Exception {
 	
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6))
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7))
 		        .uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country("U").postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 		
@@ -1077,12 +1083,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add more than 2 characters country name.")
 		public void test_052_registration_add_address_with_more_than_2_characters_country_name() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1).streetAddress2(addStreetAddress2).city(addCity).state(addState).country("USA").postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
 		
@@ -1099,11 +1105,11 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is not able to add lowercase country name in payload.")
 		public void test_053_registration_add_address_with_lower_case_country_name() throws Exception {
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country("us").postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);
@@ -1119,12 +1125,12 @@ public class Register_add_registration_data extends Base_class {
 		@Description("Verify user is able to add address successfully with all the valid fields")
 		public void test_054_registration_add_address_successfully() throws Exception {	
 //Delete aaddress
-		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle26) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).uuid(addressUuid).build();
+		DeleteRegistrationMessage message = DeleteRegistrationMessage.builder().userHandle(handle27) .userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).uuid(addressUuid).build();
 		api.deleteRegistrationData(RegistrationDataEnum.ADDRESS, message);
 		
 	
 //Add address	
-	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle26).userPrivateKey(reader.getCellData(sheetName, privatekeys, 6)).build();
+	  UserHandleMessage user = UserHandleMessage.builder().userHandle(handle27).userPrivateKey(reader.getCellData(sheetName, privatekeys, 7)).build();
 	  AddressMessage message3 = AddressMessage.builder().addressAlias(addAddressAlias).streetAddress1(addStreetAddress1)
 	  		.streetAddress2(addStreetAddress2).city(addCity).state(addState).country(addCountry).postalCode(addPostalCode).build();
 	  ApiResponse response = api.addAddress(user, message3);		
@@ -1133,7 +1139,7 @@ public class Register_add_registration_data extends Base_class {
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(parsedResponse.getStatus(), statusTrue);
-		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_26+".");
+		Assert.assertEquals(parsedResponse.getMessage(), "Successfully added address to user "+Handle_27+".");
 		Assert.assertNotNull(parsedResponse.getAddress().getAddedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getModifiedEpoch());
 		Assert.assertNotNull(parsedResponse.getAddress().getUuid());

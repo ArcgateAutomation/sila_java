@@ -1,16 +1,19 @@
 package sila_test_cases;
 
 
+import static org.testng.Assert.assertNotNull;
+
 import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.silamoney.client.api.ApiResponse;
 import com.silamoney.client.domain.Account;
 import com.silamoney.client.domain.BaseResponse;
+import com.silamoney.client.domain.LinkAccountResponse;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
-	public class Get_account extends Base_class{
+	public class Test20_Get_account extends Base_class{
 
 //Get account -plaid account
 	
@@ -137,10 +140,12 @@ import io.qameta.allure.Description;
 		ApiResponse getAccountresponse = api.getAccounts(handle23, reader.getCellData(sheetName, privatekeys, 3));
 		
 		Assert.assertEquals(getAccountresponse.getStatusCode(), 200);
-//		Assert.assertEquals(((List<Account>) getAccountresponse.getData()).get(0).accountName, validDirectAccountName);
-//		Assert.assertNotNull(((List<Account>) getAccountresponse.getData()).get(0).accountNumber);
-//		Assert.assertEquals(((List<Account>) getAccountresponse.getData()).get(0).accountStatus, "active");
-//		Assert.assertEquals(((List<Account>) getAccountresponse.getData()).get(0).accountType, "CHECKING");
+		List<Account> list = (List<Account>) getAccountresponse.getData();
+		Assert.assertEquals(list.get(0).accountName, validDirectAccountName);
+		Assert.assertNotNull(list.get(0).accountNumber);
+		Assert.assertEquals(list.get(0).accountStatus, "active");
+		Assert.assertEquals(list.get(0).accountType, "CHECKING");
+
 	}	
 	
 

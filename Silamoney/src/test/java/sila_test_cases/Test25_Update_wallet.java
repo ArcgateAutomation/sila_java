@@ -9,7 +9,7 @@ import com.silamoney.common_files.Utility;
 
 import io.qameta.allure.Description;
 
-public class Update_wallet extends Base_class{
+public class Test25_Update_wallet extends Base_class{
 	
 	@Test(priority = 1)
 	@Description("Verify user is able to update wallet name")

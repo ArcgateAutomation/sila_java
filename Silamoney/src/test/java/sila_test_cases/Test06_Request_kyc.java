@@ -17,23 +17,30 @@ import com.silamoney.common_files.Base_class;
 import com.silamoney.common_files.Utility;
 import io.qameta.allure.Description;
 
-public class Request_kyc extends Base_class {
+public class Test06_Request_kyc extends Base_class {
 	
 
 
 	@Test(priority=1)
 	@Description("Request KYC without kyc_level entity")
 	public void Test_01_Request_KYC_Without_kyc_level_entity() throws Exception {	
-		api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
+		ApiResponse response1=api.requestKYC(handle22, null, reader.getCellData(sheetName, privatekeys, 2));
 		Thread.sleep(3000);
+		System.out.println("KYC Done: "+((BaseResponse)response1.getData()).getMessage());
 		
-		api.requestKYC(handle23, null, reader.getCellData(sheetName, privatekeys, 3));
+		ApiResponse response2=api.requestKYC(handle23, null, reader.getCellData(sheetName, privatekeys, 3));
 		Thread.sleep(3000);
+		System.out.println("KYC Done: "+((BaseResponse)response2.getData()).getMessage());
+		
+		ApiResponse response3=api.requestKYC(businessHandle, null, reader.getCellData(sheetName, privatekeys, 41));
+		Thread.sleep(3000);			
+		System.out.println("KYC Done: "+((BaseResponse)response3.getData()).getMessage());
+		
+		
 		
 		ApiResponse response=api.requestKYC(handle24, null, reader.getCellData(sheetName, privatekeys, 4));
 		Thread.sleep(3000);
 
-		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);		
 		Assert.assertEquals(((BaseResponse)response.getData()).getStatus(), statusTrue);

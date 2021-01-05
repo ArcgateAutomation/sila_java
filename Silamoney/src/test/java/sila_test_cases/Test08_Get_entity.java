@@ -6,21 +6,26 @@ import com.silamoney.client.api.ApiResponse;
 import com.silamoney.client.domain.BaseResponse;
 import com.silamoney.client.domain.GetEntityResponse;
 import com.silamoney.common_files.Base_class;
+import com.silamoney.common_files.Utility;
 
 import io.qameta.allure.Description;
 
-public class Get_entity extends Base_class{
+public class Test08_Get_entity extends Base_class{
 	
 	
 	
-// Get Entity (individual)	
-
+// Get Entity (individual)
 	
-	@Test(priority = 2)
+	
+	@Test(priority = 1)
 	@Description("Get entity for individual user")
 	public void test_01_Get_entity_for_individual_user() throws Exception {	  
-		ApiResponse response = api.getEntity(handle22, reader.getCellData(sheetName, privatekeys, 2));
+		ApiResponse response = api.getEntity(handle23, reader.getCellData(sheetName, privatekeys, 3));
 
+		String membership_token= ((GetEntityResponse) response.getData()).getMemberships().get(0).getCertificationToken();           
+        System.out.println("membership_token: "+membership_token);
+        reader.setCellData(sheetName, "membershipToken", 3, membership_token);
+        
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getAddresses().get(0).getStreetAddress1(), streetAddress1);
@@ -30,7 +35,7 @@ public class Get_entity extends Base_class{
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getAddresses().get(0).getCountry(), country);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getEmails().get(0).getEmail(), email);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getEntityType(), "individual");
-		Assert.assertEquals(((GetEntityResponse)response.getData()).getUserHandle(), Handle_22);
+		Assert.assertEquals(((GetEntityResponse)response.getData()).getUserHandle(), Handle_23);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getEntity().getFirstName(), firstName);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getEntity().getLastName(), lastName);
 		Assert.assertEquals(((GetEntityResponse)response.getData()).getEntity().getEntityName(), accountName);
@@ -43,7 +48,7 @@ public class Get_entity extends Base_class{
 	@Test(priority = 2)
 	@Description("Get entity with empty user_handle")
 	public void test_02_Get_entity_with_empyt_user_handle() throws Exception {	  
-		ApiResponse response = api.getEntity("", reader.getCellData(sheetName, privatekeys, 2));
+		ApiResponse response = api.getEntity("", reader.getCellData(sheetName, privatekeys, 3));
 
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -56,7 +61,7 @@ public class Get_entity extends Base_class{
 	@Test(priority = 3)
 	@Description("Get entity with unregistered user_handle")
 	public void test_03_Get_entity_with_unregistered_user_handle() throws Exception {	  
-		ApiResponse response = api.getEntity(handleNotRegistered, reader.getCellData(sheetName, privatekeys, 2));
+		ApiResponse response = api.getEntity(handleNotRegistered, reader.getCellData(sheetName, privatekeys, 3));
 		//System.out.println(((BaseResponse)response.getData()).getMessage());
 		Assert.assertEquals(response.getStatusCode(), 403);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -69,7 +74,7 @@ public class Get_entity extends Base_class{
 	@Test(priority = 4)
 	@Description("Get entity with invalid crypto_key")
 	public void test_04_Get_entity_with_invalid_crypto_key() throws Exception {	  
-		ApiResponse response = api.getEntity(handle22, reader.getCellData(sheetName, privatekeys, 7));
+		ApiResponse response = api.getEntity(handle23, reader.getCellData(sheetName, privatekeys, 7));
 
 		Assert.assertEquals(response.getStatusCode(), 403);
 //		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -85,6 +90,7 @@ public class Get_entity extends Base_class{
 	@Description("Get entity for business user")
 	public void test_05_Get_entity_for_business_user() throws Exception {	  
 		ApiResponse response = api.getEntity(businessHandle, reader.getCellData(sheetName, privatekeys, 41));
+
 
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);

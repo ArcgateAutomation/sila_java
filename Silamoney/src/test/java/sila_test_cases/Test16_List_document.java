@@ -14,7 +14,7 @@ import com.silamoney.common_files.Base_class;
 
 import io.qameta.allure.Description;
 
-public class List_document extends Base_class{
+public class Test16_List_document extends Base_class{
 	List<String> docTypes = new ArrayList<String>();
 	 
 	 

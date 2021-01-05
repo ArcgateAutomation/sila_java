@@ -763,6 +763,31 @@ public class Utility {
 	}
 	
 	
+	
+	private static String user41CryptoAddress;
+	public static String getuser41CryptoAddress() {
+		if (user41CryptoAddress == null || user41CryptoAddress.isBlank()) {
+			try {
+
+				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
+				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
+
+				user41PrivateKey = privateKeyInDec.toString(16);
+
+				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
+				user41CryptoAddress = "0x" + aWallet.getAddress();
+				//user41CryptoAddress = "0x039e8166cd0ccbe7abae3036c4c5d055bcabd582";
+			} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+					| CipherException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return user41CryptoAddress;
+	}
+	
+	
+	
 	private static String user26CryptoAddress;
 	public static String getuser26CryptoAddress() {
 		if (user26CryptoAddress == null || user26CryptoAddress.isBlank()) {
@@ -1202,6 +1227,18 @@ public class Utility {
 		return user25PrivateKey;
 	}
 	
+	
+	
+	private static String user41PrivateKey;
+	/**
+	 * @return String
+	 */
+	public static String getuser41PrivateKey() {
+		getuser41CryptoAddress();
+		return user41PrivateKey;
+	}
+	
+	
 	private static String user26PrivateKey;
 	/**
 	 * @return String
@@ -1287,6 +1324,7 @@ public class Utility {
 		return userPrivateKey43Char;
 	}
 	
+
 	
 	
 	private static String businessCryptoAddress;
@@ -1313,6 +1351,31 @@ public class Utility {
 
 		return businessCryptoAddress;
 	}
+	
+//	private static String businessCryptoAddress;
+//
+//	/**
+//	 * @return String
+//	 */
+//	public static String getBusinessCryptoAddress() {
+//		if (businessCryptoAddress == null || businessCryptoAddress.isBlank()) {
+//			try {
+//
+//				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
+//				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
+//
+//				businessPrivateKey = privateKeyInDec.toString(16);
+//
+//				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
+//				businessCryptoAddress = "0x" + aWallet.getAddress();
+//			} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+//					| CipherException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return businessCryptoAddress;
+//	}
 
 	
 	private static String businessCryptoAddress_1;
@@ -1327,7 +1390,7 @@ public class Utility {
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				businessPrivateKey = privateKeyInDec.toString(16);
+				businessPrivateKey_1 = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				businessCryptoAddress_1 = "0x" + aWallet.getAddress();
@@ -1346,14 +1409,14 @@ public class Utility {
 	/**
 	 * @return String
 	 */
-	public static String getbusinessCryptoAddress_2() {
+	public static String getBusinessCryptoAddress_2() {
 		if (businessCryptoAddress_2 == null || businessCryptoAddress_2.isBlank()) {
 			try {
 
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				businessPrivateKey = privateKeyInDec.toString(16);
+				businessPrivateKey_2 = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				businessCryptoAddress_2 = "0x" + aWallet.getAddress();
@@ -1372,14 +1435,14 @@ public class Utility {
 	/**
 	 * @return String
 	 */
-	public static String getbusinessCryptoAddress_3() {
+	public static String getBusinessCryptoAddress_3() {
 		if (businessCryptoAddress_3 == null || businessCryptoAddress_3.isBlank()) {
 			try {
 
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				businessPrivateKey = privateKeyInDec.toString(16);
+				businessPrivateKey_3 = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				businessCryptoAddress_3 = "0x" + aWallet.getAddress();
@@ -1399,14 +1462,14 @@ public class Utility {
 	/**
 	 * @return String
 	 */
-	public static String getbusinessCryptoAddress_4() {
+	public static String getBusinessCryptoAddress_4() {
 		if (businessCryptoAddress_4 == null || businessCryptoAddress_4.isBlank()) {
 			try {
 
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				businessPrivateKey = privateKeyInDec.toString(16);
+				businessPrivateKey_4 = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				businessCryptoAddress_4 = "0x" + aWallet.getAddress();
@@ -1425,14 +1488,14 @@ public class Utility {
 	/**
 	 * @return String
 	 */
-	public static String getbusinessCryptoAddress_5() {
+	public static String getBusinessCryptoAddress_5() {
 		if (businessCryptoAddress_5 == null || businessCryptoAddress_5.isBlank()) {
 			try {
 
 				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
 				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
 
-				businessPrivateKey = privateKeyInDec.toString(16);
+				businessPrivateKey_5 = privateKeyInDec.toString(16);
 
 				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
 				businessCryptoAddress_5 = "0x" + aWallet.getAddress();
@@ -1443,6 +1506,32 @@ public class Utility {
 		}
 
 		return businessCryptoAddress_5;
+	}
+	
+	
+	private static String businessCryptoAddress_6;
+
+	/**
+	 * @return String
+	 */
+	public static String getBusinessCryptoAddress_6() {
+		if (businessCryptoAddress_6 == null || businessCryptoAddress_6.isBlank()) {
+			try {
+
+				ECKeyPair ecKeyPair = Keys.createEcKeyPair();
+				BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
+
+				businessPrivateKey_6 = privateKeyInDec.toString(16);
+
+				WalletFile aWallet = Wallet.createLight(UUID.randomUUID().toString(), ecKeyPair);
+				businessCryptoAddress_6 = "0x" + aWallet.getAddress();
+			} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+					| CipherException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return businessCryptoAddress_6;
 	}
 	
 	
@@ -1457,6 +1546,7 @@ public class Utility {
 		return businessPrivateKey;
 	}
 	
+
 	
 	private static String businessPrivateKey_1;
 
@@ -1475,9 +1565,10 @@ public class Utility {
 	 * @return String
 	 */
 	public static String getBusinessPrivateKey_2() {
-		getBusinessCryptoAddress();
+		getBusinessCryptoAddress_2();
 		return businessPrivateKey_2;
 	}
+	
 	
 	
 	private static String businessPrivateKey_3;
@@ -1486,7 +1577,7 @@ public class Utility {
 	 * @return String
 	 */
 	public static String getBusinessPrivateKey_3() {
-		getBusinessCryptoAddress();
+		getBusinessCryptoAddress_3();
 		return businessPrivateKey_3;
 	}
 	
@@ -1497,7 +1588,7 @@ public class Utility {
 	 * @return String
 	 */
 	public static String getBusinessPrivateKey_4() {
-		getBusinessCryptoAddress();
+		getBusinessCryptoAddress_4();
 		return businessPrivateKey_4;
 	}
 	
@@ -1508,11 +1599,21 @@ public class Utility {
 	 * @return String
 	 */
 	public static String getBusinessPrivateKey_5() {
-		getBusinessCryptoAddress();
+		getBusinessCryptoAddress_5();
 		return businessPrivateKey_5;
 	}
 	
 	
+	
+	private static String businessPrivateKey_6;
+
+	/**
+	 * @return String
+	 */
+	public static String getBusinessPrivateKey_6() {
+		getBusinessCryptoAddress_6();
+		return businessPrivateKey_6;
+	}
 	
 
 	private static String blockchain_address;
@@ -1556,6 +1657,8 @@ public class Utility {
 		return plaidToken;
 	}
 
+	
+	
 	private static String businessOwnerToken;
 
 	/**
@@ -1575,5 +1678,6 @@ public class Utility {
 
 	
 
+	
 
 }

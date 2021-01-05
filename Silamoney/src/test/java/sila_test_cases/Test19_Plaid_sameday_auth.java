@@ -8,7 +8,7 @@ import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
 
-public class Plaid_sameday_auth extends Base_class{
+public class Test19_Plaid_sameday_auth extends Base_class{
 
 	@Test(priority=1)
 	@Description("Verify plaid sameday auth with unregistered user_handle")

@@ -7,7 +7,7 @@ import com.silamoney.client.domain.BaseResponse;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
-public class Link_account extends Base_class{
+public class Test18_Link_account extends Base_class{
 
 	
 	
@@ -175,6 +175,7 @@ public class Link_account extends Base_class{
 	public void Test_11_Link_account_with_direct_link_account_success() throws Exception {
 		ApiResponse response = api.linkAccount(handle23, reader.getCellData(sheetName, privatekeys, 3), validDirectAccountName, accountNumber, routingNumber, accountType);
 		
+		System.out.println(((BaseResponse) response.getData()).getMessage());
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());

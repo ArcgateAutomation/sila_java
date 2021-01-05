@@ -10,7 +10,7 @@ import com.silamoney.common_files.Base_class;
 
 import io.qameta.allure.Description;
 
-public class Get_wallets extends Base_class {
+public class Test24_Get_wallets extends Base_class {
 		String Wallets_handle="automationuserwallet.silamoney.eth";
 		String Wallets_private_key="7c9f5c662eab079d6b72721cc806b2e7015205109c4303fabc0deea14ac9da3a";
 		@Test(priority = 1)

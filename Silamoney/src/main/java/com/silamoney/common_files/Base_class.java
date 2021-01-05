@@ -88,6 +88,9 @@ public class Base_class extends ValidationData{
 	public static String Handle_25 =RandaomValue+"j"+DateNTime1;
 	public static String handle25 =Handle_25+".silamoney.eth";
 	
+	public static String Handle_41 =RandaomValue+"jj"+DateNTime1;
+	public static String handle41 =Handle_41+".silamoney.eth";
+	
 	public static String Handle_26 =RandaomValue+"k"+DateNTime1;
 	public static String handle26 =Handle_26+".silamoney.eth";
 	
@@ -113,6 +116,8 @@ public class Base_class extends ValidationData{
 	
 	public static String business_Handle =RandaomValue+"s"+DateNTime1;
 	public static String businessHandle =business_Handle+".silamoney.eth";
+	public static String business_Handle_2 =RandaomValue+"t"+DateNTime1;
+	public static String businessHandle_2 =business_Handle_2+".silamoney.eth";
 	
 	
 

@@ -10,7 +10,7 @@ import com.silamoney.client.domain.UploadDocumentMessage;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 		
-		public class Get_document extends Base_class{
+		public class Test17_Get_document extends Base_class{
 		String documentUuid=null;	
 		@Test(priority = 1)
 		@Description("Verify user is able to get document with valid fields")

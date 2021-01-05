@@ -15,7 +15,7 @@ import com.silamoney.common_files.Base_class;
 
 import io.qameta.allure.Description;
 
-public class Register_wallet extends Base_class{
+public class Test22_Register_wallet extends Base_class{
 
 		@Test(priority = 1)
 	@Description("Register wallet wil all valida data")

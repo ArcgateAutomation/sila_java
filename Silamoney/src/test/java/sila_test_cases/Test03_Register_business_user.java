@@ -13,7 +13,9 @@ import com.silamoney.common_files.Utility;
 
 import io.qameta.allure.Description;
 
-public class Register_business_user extends Base_class{
+public class Test03_Register_business_user extends Base_class{
+	
+
 	
 	
 	@Test(priority = 1)
@@ -22,12 +24,23 @@ public class Register_business_user extends Base_class{
 			
 			ApiResponse getBusinessTypesResponse = api.getBusinessTypes();
 			BusinessType businessType =((GetBusinessTypesResponse)getBusinessTypesResponse.getData()).getBusinessTypes().get(0);
+			
+			BusinessUser user2 = new BusinessUser(country, businessHandle_2, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
+					 Utility.getBusinessCryptoAddress_2(), crypto_alias, type,  businessType, business_website, 
+			          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
+			reader.setCellData(sheetName, privatekeys, 42, Utility.getBusinessPrivateKey_2());
+			reader.setCellData(sheetName, cryptoAddress, 42, Utility.getBusinessCryptoAddress_2());
+			ApiResponse businessRegisterResponse2 = api.registerBusiness(user2);	
+			System.out.println(((BaseResponse)businessRegisterResponse2.getData()).getMessage());
+			
 
 			BusinessUser user = new BusinessUser(country, businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
 					 Utility.getBusinessCryptoAddress(), crypto_alias, type,  businessType, business_website, 
 			          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
 			reader.setCellData(sheetName, privatekeys, 41, Utility.getBusinessPrivateKey());
+			System.out.println(Utility.getBusinessPrivateKey());
 			reader.setCellData(sheetName, cryptoAddress, 41, Utility.getBusinessCryptoAddress());
+			System.out.println(Utility.getBusinessCryptoAddress());
 			ApiResponse businessRegisterResponse = api.registerBusiness(user);	
 			
 			Assert.assertEquals(businessRegisterResponse.getStatusCode(), 200);
@@ -91,11 +104,12 @@ public class Register_business_user extends Base_class{
 		ApiResponse getBusinessTypesResponse = api.getBusinessTypes();
 		BusinessType businessType =((GetBusinessTypesResponse)getBusinessTypesResponse.getData()).getBusinessTypes().get(0);
 		
+		
 		BusinessUser user = new BusinessUser(country, "b"+businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
-				 Utility.getbusinessCryptoAddress_2(), "", type,  businessType, business_website, 
+				 Utility.getBusinessCryptoAddress_6(), "", type,  businessType, business_website, 
 		          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
 		ApiResponse businessRegisterResponse = api.registerBusiness(user);	
-		
+		System.out.println(((BaseResponse)businessRegisterResponse.getData()).getMessage());
 		Assert.assertEquals(businessRegisterResponse.getStatusCode(), 200);
 		Assert.assertEquals(businessRegisterResponse.getSuccess(), successTrue);
 		Assert.assertEquals(((BaseResponse) businessRegisterResponse.getData()).getStatus(),statusTrue);
@@ -113,7 +127,7 @@ public class Register_business_user extends Base_class{
 		
 		
 		BusinessUser user = new BusinessUser(country, "c"+businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
-				 Utility.getbusinessCryptoAddress_3(), crypto_alias, "",  businessType, business_website, 
+				 Utility.getBusinessCryptoAddress_3(), crypto_alias, "",  businessType, business_website, 
 		          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
 
 		ApiResponse businessRegisterResponse = api.registerBusiness(user);	
@@ -155,12 +169,12 @@ public class Register_business_user extends Base_class{
 		BusinessType businessType =((GetBusinessTypesResponse)getBusinessTypesResponse.getData()).getBusinessTypes().get(0);
 
 		BusinessUser user = new BusinessUser(country, "d"+businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
-				 Utility.getbusinessCryptoAddress_4(), crypto_alias, type,  businessType, "", 
+				 Utility.getBusinessCryptoAddress_4(), crypto_alias, type,  businessType, "", 
 		          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
 
 		ApiResponse businessRegisterResponse = api.registerBusiness(user);	
 		
-		
+		System.out.println(((BaseResponse)businessRegisterResponse.getData()).getMessage());
 		Assert.assertEquals(businessRegisterResponse.getStatusCode(), 200);
 		Assert.assertEquals(businessRegisterResponse.getSuccess(), successTrue);
 		Assert.assertEquals(((BaseResponse) businessRegisterResponse.getData()).getStatus(),statusTrue);
@@ -181,7 +195,7 @@ public class Register_business_user extends Base_class{
 		BusinessType businessType =((GetBusinessTypesResponse)getBusinessTypesResponse.getData()).getBusinessTypes().get(0);
 
 		BusinessUser user = new BusinessUser(country, "d"+businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
-				 Utility.getbusinessCryptoAddress_5(), crypto_alias, type,  businessType, "testwebsite.com", 
+				 Utility.getBusinessCryptoAddress_5(), crypto_alias, type,  businessType, "testwebsite.com", 
 		          doingBusiness_As, Utility.getDefaultNaicCategoryDescription());
 
 		ApiResponse businessRegisterResponse = api.registerBusiness(user);	
@@ -202,7 +216,7 @@ public class Register_business_user extends Base_class{
 		BusinessType businessType =((GetBusinessTypesResponse)getBusinessTypesResponse.getData()).getBusinessTypes().get(0);
 
 		BusinessUser user = new BusinessUser(country, "e"+businessHandle, businessEntityName,  identity_alias, identityValue, phone, email, streetAddress1, streetAddress2,  city, state, postalCode,
-				 Utility.getbusinessCryptoAddress_5(), crypto_alias, type,  businessType, business_website, 
+				 Utility.getBusinessCryptoAddress_5(), crypto_alias, type,  businessType, business_website, 
 				 "", Utility.getDefaultNaicCategoryDescription());
 
 		ApiResponse businessRegisterResponse = api.registerBusiness(user);	
@@ -217,8 +231,5 @@ public class Register_business_user extends Base_class{
 	
 	
 	
-
-
-
 
 }

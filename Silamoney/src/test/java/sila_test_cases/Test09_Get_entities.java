@@ -8,7 +8,7 @@ import com.silamoney.client.domain.GetEntitiesResponse;
 import com.silamoney.common_files.Base_class;
 import io.qameta.allure.Description;
 
-public class Get_entities extends Base_class{
+public class Test09_Get_entities extends Base_class{
 	
 
 	

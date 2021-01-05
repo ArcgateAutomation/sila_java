@@ -6,10 +6,25 @@
 
 	<test name="API">
 		<classes>   
+<!-- 			<class name="sila_test_cases.Test02_Registration"/>
+			<class name="sila_test_cases.Test03_Register_business_user"/> 
 
-			<class name="sila_test_cases.Request_kyc"/>  
-			<class name="sila_test_cases.Register_wallet"/>  
-			<class name="sila_test_cases.Update_wallet"/> 
+			<class name="sila_test_cases.Test07_Link_business_member"/>  -->
+
+			<class name="sila_test_cases.Test06_Request_kyc"/>
+
+			 
+			<class name="sila_test_cases.Test18_Link_account"/> 
+			<class name="sila_test_cases.Test19_Plaid_sameday_auth"/> 
+
+
+
+			<class name="sila_test_cases.Test29_Get_sila_balance"/> 
+			<class name="sila_test_cases.Test30_Issue_sila"/> 
+			<class name="sila_test_cases.Test31_Cancel_transaction"/>
+			<class name="sila_test_cases.Test32_Transfer_sila"/> 
+			
+
 		</classes>
 	</test>
 	

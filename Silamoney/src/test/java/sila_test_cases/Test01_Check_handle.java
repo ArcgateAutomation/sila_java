@@ -11,7 +11,7 @@ import io.qameta.allure.Description;
 
 
 
-public class Check_handle extends Base_class {
+public class Test01_Check_handle extends Base_class {
 	
 
 
@@ -92,7 +92,7 @@ public class Check_handle extends Base_class {
 	  Assert.assertEquals(response.getStatusCode(), 401);
 	  Assert.assertEquals(response.getSuccess(), successFalse);
 	  Assert.assertEquals(((BaseResponse)response.getData()).getStatus(),statusFalse);
-	  Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),ErrorMsg4); }
+	  Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),"The requested app handle is forbidden access to the Sila platform."); }
 
 	
 

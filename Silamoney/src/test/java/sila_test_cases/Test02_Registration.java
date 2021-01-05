@@ -12,7 +12,7 @@ import org.joda.time.LocalDate;
 
 
 
-public class Registration extends Base_class {
+public class Test02_Registration extends Base_class {
 
 	
 	// Register Individual User
@@ -20,14 +20,12 @@ public class Registration extends Base_class {
 		@Description("Check registration with all valid data")
 		public void Test_01_Test_01_register_with_all_valid_data() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
-			
-
-		
+		//
 		User user2 = new User(handle22,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
 		postalCode,  phone,  email, identityNumber, Utility.getuser22CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 2, Utility.getuser22PrivateKey());
 		reader.setCellData(sheetName, cryptoAddress, 2, Utility.getuser22CryptoAddress());
-		api.register(user2);
+		api.register(user2); //Iser to link control and Administartor role
 		Thread.sleep(3000);
 		
 		
@@ -35,7 +33,7 @@ public class Registration extends Base_class {
 		postalCode,  phone,  email, identityNumber, Utility.getuser23CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 3, Utility.getuser23PrivateKey());
 		reader.setCellData(sheetName, cryptoAddress, 3, Utility.getuser23CryptoAddress());
-		api.register(user3);
+		api.register(user3); //Use for beneficial_owner role
 		
 		//User4
 		User user4 = new User(handle24,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
@@ -45,14 +43,16 @@ public class Registration extends Base_class {
 		api.register(user4);
 		Thread.sleep(3000);
 		
-//		//User5
-//		User user5 = new User(handle25,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
-//		postalCode,  phone,  email, identityNumber, Utility.getuser25CryptoAddress(), birthdate.toDate(), country);
-//		reader.setCellData(sheetName, privatekeys, 5, Utility.getuser25PrivateKey());
-//		 api.register(user5);
-//		Thread.sleep(3000);
+		//User5
+		User user5 = new User(handle25,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser25CryptoAddress(), birthdate.toDate(), country);
+		reader.setCellData(sheetName, privatekeys, 5, Utility.getuser25PrivateKey());
+		reader.setCellData(sheetName, cryptoAddress, 5, Utility.getuser25CryptoAddress());
+		 api.register(user5);
+		Thread.sleep(3000);
 		
-		User user6 = new User(handle26,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city, state, postalCode,  phone,  email, identityNumber, Utility.getuser26CryptoAddress(), birthdate.toDate(), country);
+		User user6 = new User(handle26,  firstName,  lastName, entityName, streetAddress1, streetAddress2, city, state, 
+		postalCode,  phone,  email, identityNumber, Utility.getuser26CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 6, Utility.getuser26PrivateKey());
 		reader.setCellData(sheetName, cryptoAddress, 6, Utility.getuser26CryptoAddress());
 		api.register(user6);
@@ -63,7 +63,7 @@ public class Registration extends Base_class {
 		postalCode,  phone,  email, identityNumber, Utility.getuser27CryptoAddress(), birthdate.toDate(), country);
 		reader.setCellData(sheetName, privatekeys, 7, Utility.getuser27PrivateKey());
 		reader.setCellData(sheetName, cryptoAddress, 7, Utility.getuser27CryptoAddress());
-		ApiResponse response =api.register(user7);
+		ApiResponse response =api.register(user7); //Add, update,delete registration related testcases
 
 		Thread.sleep(3000);
 		
@@ -75,9 +75,6 @@ public class Registration extends Base_class {
 		Thread.sleep(3000);
 		
 
-		
-
-		
 		Assert.assertEquals(response.getStatusCode(), successStatusCode);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		Assert.assertNotNull(((BaseResponse) response.getData()).getReference());
@@ -87,10 +84,9 @@ public class Registration extends Base_class {
 		}
 	
 
-	
 
 		@Test(priority=2)
-		@Description("Check registration with already tanken user_handle")
+		@Description("Check registration with already taken user_handle")
 		public void Test_02_register_with_already_taken_user_handle()throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31); 
 		User user = new User(handleAlreadyTaken,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
@@ -155,14 +151,11 @@ public class Registration extends Base_class {
 		postalCode,  phone,  email, identityNumber, Utility.getUserCryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
-
 		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),
-		validationErrorMsg); 
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "c"+Handle_1+ " was successfully registered."); 
 		
 		}
 		
@@ -399,10 +392,16 @@ public class Registration extends Base_class {
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg); 
+		System.out.println("getStatusCode: "+response.getStatusCode());
+		System.out.println("getStatusCode: "+response.getSuccess());
+		System.out.println("getStatusCode: "+((BaseResponse)response.getData()).getStatus());
+		System.out.println("getStatusCode: "+((BaseResponse)response.getData()).getReference());
+		System.out.println("getStatusCode: "+((BaseResponse)response.getData()).getMessage());
+		
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "n"+Handle_1+ " was successfully registered."); 
 		}
 		
 		
@@ -467,18 +466,15 @@ public class Registration extends Base_class {
 		@Description("Check registration with empty State field")
 		public void Test_20_register_with_empty_state_field() throws Exception {
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
-		User user = new User("q11"+handle1,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  "", 
+		User user = new User("q1"+handle1,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  "", 
 		postalCode,  phone,  email, identityNumber, Utility.getUser9CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 		
-		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),
-		validationErrorMsg); 
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "q1"+Handle_1+ " was successfully registered."); 
 		}
 		
 		
@@ -626,12 +622,10 @@ public class Registration extends Base_class {
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),
-		validationErrorMsg); 
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "ab"+Handle_1+ " was successfully registered."); 
 		
 		}
 		
@@ -643,7 +637,7 @@ public class Registration extends Base_class {
 		public void Test_29_register_with_minimum_1_length_postal_code_field() throws Exception { 
 		LocalDate birthdate = new LocalDate(2000, 01, 31);
 		User user = new User("ac"+handle1,  firstName,  lastName, entityName,  streetAddress1, streetAddress2, city,  state, 
-		"5",  phone,  email, identityNumber, Utility.getuser13CryptoAddress(), birthdate.toDate(), country);
+		"55642",  phone,  email, identityNumber, Utility.getuser13CryptoAddress(), birthdate.toDate(), country);
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 		
@@ -947,11 +941,10 @@ public class Registration extends Base_class {
 		ApiResponse response = api.register(user);
 		Thread.sleep(3000);
 
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg); 
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "aj"+Handle_1+ " was successfully registered."); 
 
 		}
 
@@ -1148,11 +1141,10 @@ public class Registration extends Base_class {
 		ApiResponse response =api.register(user4);
 		Thread.sleep(3000);
 		
-		Assert.assertEquals(response.getStatusCode(), 400);
-		Assert.assertEquals(response.getSuccess(), successFalse);
-		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),
-		statusFalse);
-		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(),validationErrorMsg);
+		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getSuccess(), successTrue);
+		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
+		Assert.assertEquals(((BaseResponse)response.getData()).getMessage(), "bf"+Handle_1+ " was successfully registered."); 
 
 		}
 		

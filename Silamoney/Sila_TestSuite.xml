@@ -6,29 +6,50 @@
 
 	<test name="API">
 		<classes>   
-		 	<class name="sila_test_cases.Check_handle"/> 
-			<class name="sila_test_cases.Registration"/>
-			<class name="sila_test_cases.Request_kyc"/>  
-			<class name="sila_test_cases.Check_kyc"/>  
-		    <class name="sila_test_cases.Register_add_registration_data"/> 
-			<class name="sila_test_cases.Register_update_registration_data"/> 
-			<class name="sila_test_cases.Register_delete_registration_data"/> 
-			<class name="sila_test_cases.Link_account"/> 
-			<class name="sila_test_cases.Plaid_sameday_auth"/> 
-			<class name="sila_test_cases.Get_account"/> 
-			<class name="sila_test_cases.Get_account_balance"/> 
-			<class name="sila_test_cases.Upload_document"/> 
-			<class name="sila_test_cases.List_document"/> 
-			<class name="sila_test_cases.Get_document"/> 
-			<class name="sila_test_cases.Register_wallet"/> 
-			<class name="sila_test_cases.Get_wallet"/> 
-			<class name="sila_test_cases.Get_wallets"/> 
-			<class name="sila_test_cases.Update_wallet"/> 
-			<class name="sila_test_cases.Register_business_user"/> 
-			<class name="sila_test_cases.Link_business_member"/> 
-			<class name="sila_test_cases.Unlink_business_member"/> 
-			<class name="sila_test_cases.Get_entity"/> 
+			<class name="sila_test_cases.Test01_Check_handle"/> 
+			<class name="sila_test_cases.Test02_Registration"/>
+			<class name="sila_test_cases.Test03_Register_business_user"/> 
+
+			<class name="sila_test_cases.Test04_Link_business_member"/> 
+			<class name="sila_test_cases.Test05_Unlink_business_member"/> 
+			<class name="sila_test_cases.Test06_Request_kyc"/>  
+			<class name="sila_test_cases.Test07_Check_kyc"/>  
+			<class name="sila_test_cases.Test08_Get_entity"/> 
+			<class name="sila_test_cases.Test09_Get_entities"/>
+			<class name="sila_test_cases.Test10_Certify_beneficial_owner"/>
+			<class name="sila_test_cases.Test11_Certify_business"/> 
 			
+			
+
+			
+			<class name="sila_test_cases.Test12_Register_add_registration_data"/> 
+			<class name="sila_test_cases.Test13_Register_update_registration_data"/> 
+			<class name="sila_test_cases.Test14_Register_delete_registration_data"/>
+ 
+			<class name="sila_test_cases.Test15_Upload_document"/> 
+			<class name="sila_test_cases.Test16_List_document"/> 
+			<class name="sila_test_cases.Test17_Get_document"/> 
+			 
+			<class name="sila_test_cases.Test18_Link_account"/> 
+			<class name="sila_test_cases.Test19_Plaid_sameday_auth"/> 
+			<class name="sila_test_cases.Test20_Get_account"/> 
+			<class name="sila_test_cases.Test21_Get_account_balance"/> 
+
+			<class name="sila_test_cases.Test22_Register_wallet"/> 
+			<class name="sila_test_cases.Test23_Get_wallet"/> 
+			<class name="sila_test_cases.Test24_Get_wallets"/> 
+			<class name="sila_test_cases.Test25_Update_wallet"/> 
+
+			<class name="sila_test_cases.Test26_Get_business_types"/> 
+			<class name="sila_test_cases.Test27_Get_business_roles"/> 
+			<class name="sila_test_cases.Test28_Get_naics_categories"/> 
+			
+			<class name="sila_test_cases.Test29_Get_sila_balance"/> 
+			<class name="sila_test_cases.Test30_Issue_sila"/> 
+			<class name="sila_test_cases.Test31_Cancel_transaction"/>
+			<class name="sila_test_cases.Test32_Transfer_sila"/> 
+			
+
 		</classes>
 	</test>
 	

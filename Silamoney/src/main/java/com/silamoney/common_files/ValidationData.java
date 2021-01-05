@@ -23,7 +23,7 @@ public class ValidationData{
 	
 	protected String validationErrorMsg="Bad request.";
 	protected String invalidSignErrorMsg="Failed to authenticate app signature. The derived address 0x51851c2EF4db74d7F37E6f061d769994CbF5ae27 is not registered to arcgqa1.";
-	protected String invalidSignErrorMsg2="Failed to authenticate user signature. The derived address 0x51851c2EF4db74d7F37E6f061d769994CbF5ae27 is not registered to "+Base_class.Handle_26+".";
+	protected String invalidSignErrorMsg2="Failed to authenticate user signature. The derived address 0x51851c2EF4db74d7F37E6f061d769994CbF5ae27 is not registered to "+Base_class.Handle_27+".";
 	protected String invalidSignErrorMsg3="Failed to authenticate user signature. The derived address "+Base_class.reader.getCellData(Base_class.sheetName, Base_class.cryptoAddress, 6)+" is not registered to "+Base_class.Handle_22+".";
 	protected String invalidSignErrorMsg4="Handle "+Base_class.Handle_not_registered+" not registered by app.";
 	protected String invalidSignErrorMsg5="Handle "+Base_class.Handle_26+" not registered by app.";
@@ -153,7 +153,7 @@ public class ValidationData{
 	protected String addNewPhone="1234567890";
 	protected String addNewIdentity="123452222";
 	protected String invalid_identity_value = "12345678te";
-	protected String identityErrorMgs ="Users should not have multiple SSNs, and this request would result in "+Base_class.Handle_26+" having more than one SSN registered. Contact support@silamoney.com for further assistance if needed.";
+	protected String identityErrorMgs ="Users should not have multiple SSNs, and this request would result in "+Base_class.Handle_27+" having more than one SSN registered. Contact support@silamoney.com for further assistance if needed.";
 	protected String identityAliasErrorMgs ="Identity type EIN cannot be added to the individual entity type.";
 	protected static String addStreetAddress1="new center mall"; 
 	protected static String addStreetAddress2="airport road";
@@ -201,6 +201,7 @@ public class ValidationData{
 	protected static String identityValue ="123452222"; 
 	protected static String businessEntityName ="corporate"; 
 	protected static String doingBusiness_As ="doing business as"; 
+	protected static String descriptor_text ="test descriptor"; 
 	//protected static String type ="business"; 
 
 

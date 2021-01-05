@@ -11,23 +11,50 @@ import com.silamoney.common_files.Base_class;
 
 import io.qameta.allure.Description;
 
-public class Link_business_member extends Base_class {
+public class Test04_Link_business_member extends Base_class {
 	@Test(priority = 1)
 	@Description("Link business member as administrator")
 	public void test_01_Link_business_memeber_as_administrator() throws Exception {	
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
+		BusinessRole business_role_ControlOfficer= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(0);
+		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,
-        		reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),
-        		business_role_Administrator, null, "test details", null);
+
+		ApiResponse response1 =api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
+        		reader.getCellData(sheetName, privatekeys, 41),business_role_ControlOfficer, null, "test details", null);
+       Thread.sleep(3000);
+       System.out.println("link business_role_ControlOfficer: "+((LinkBusinessMemberResponse)response1.getData()).getMessage());
+       
+       
+		ApiResponse response2 =api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
+        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+       Thread.sleep(3000);
+       System.out.println("link business_role_Administrator: "+((LinkBusinessMemberResponse)response2.getData()).getMessage());
+       
+
+		ApiResponse response3 =api.linkBusinessMember(handle23,reader.getCellData(sheetName, privatekeys, 3), businessHandle,
+        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)0.66);
+       Thread.sleep(3000);
+       System.out.println("link business_role_beneficial_owner: "+((LinkBusinessMemberResponse)response3.getData()).getMessage());
+
+       
+       
+       
         
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42), business_role_Administrator, null, "test details", null);
+        Thread.sleep(3000);
+        
+        System.out.println(((LinkBusinessMemberResponse)response.getData()).getMessage());
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.getSuccess(), successTrue);
         Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "administrator");
         Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "User \"peter parker\" has been made a Administrator for business "+businessEntityName+".");    
 
+        
+    
+        
 }
 	
 	@Test(priority = 2)
@@ -36,15 +63,15 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 
-        ApiResponse response = api.linkBusinessMember(handle22,
-        		reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),
+        ApiResponse response = api.linkBusinessMember(handle24,
+        		reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),
         		business_role_Administrator, null, "test details", null);
         
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.getSuccess(), successTrue);
         Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "administrator");
-        Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Administrator\" has already been assigned to member "+Handle_22+" for business "+businessEntityName+".");   
+        Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Administrator\" has already been assigned to member "+Handle_24+" for business "+businessEntityName+".");   
 
 }
 
@@ -57,9 +84,9 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_ControlOfficer= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(0);
 
-        ApiResponse response = api.linkBusinessMember(handle23,
-        		reader.getCellData(sheetName, privatekeys, 3), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),
+        ApiResponse response = api.linkBusinessMember(handle25,
+        		reader.getCellData(sheetName, privatekeys, 5), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),
         		business_role_ControlOfficer, null, "test details", null); 
         
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -75,15 +102,15 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_ControlOfficer= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(0);
 
-        ApiResponse response = api.linkBusinessMember(handle23,
-        		reader.getCellData(sheetName, privatekeys, 3), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),
+        ApiResponse response = api.linkBusinessMember(handle25,
+        		reader.getCellData(sheetName, privatekeys, 5), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),
         		business_role_ControlOfficer, null, "test details", null);
 	
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.getSuccess(), successTrue);
         Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "controlling_officer");
-        Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Controlling Officer\" has already been assigned to member "+Handle_23+" for business "+businessEntityName+".");   
+        Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Controlling Officer\" has already been assigned to member "+Handle_25+" for business "+businessEntityName+".");   
 
 }
 	
@@ -96,8 +123,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle24,reader.getCellData(sheetName, privatekeys, 4), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)0.66);
+        ApiResponse response = api.linkBusinessMember(handle26,reader.getCellData(sheetName, privatekeys, 6), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)0.66);
 		
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
@@ -115,14 +142,14 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle24,reader.getCellData(sheetName, privatekeys, 4), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)0.66);
+        ApiResponse response = api.linkBusinessMember(handle26,reader.getCellData(sheetName, privatekeys, 6), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)0.66);
 		
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 		//Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusTrue);
 	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "beneficial_owner");
-	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_24+" for business "+businessEntityName+".");   
+	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_26+" for business "+businessEntityName+".");   
 
 
 }
@@ -134,8 +161,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember("" ,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+        ApiResponse response = api.linkBusinessMember("" ,reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_Administrator, null, "test details", null);
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -152,8 +179,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember(handle22 ,reader.getCellData(sheetName, privatekeys, 2), "",
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+        ApiResponse response = api.linkBusinessMember(handle24 ,reader.getCellData(sheetName, privatekeys, 4), "",
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_Administrator, null, "test details", null);
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -168,8 +195,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember(handleNotRegistered,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+        ApiResponse response = api.linkBusinessMember(handleNotRegistered,reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_Administrator, null, "test details", null);
 		
 		Assert.assertEquals(response.getStatusCode(), 403);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -184,8 +211,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 7), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 7), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_Administrator, null, "test details", null);
 		
         
 		Assert.assertEquals(response.getStatusCode(), 403);
@@ -206,8 +233,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), handleNotRegistered,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_Administrator, null, "test details", null);
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), handleNotRegistered,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_Administrator, null, "test details", null);
 		
 		Assert.assertEquals(response.getStatusCode(), 403);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -224,7 +251,7 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_Administrator= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(2);
 		
-        ApiResponse response = api.linkBusinessMember(handle22, reader.getCellData(sheetName, privatekeys, 2), businessHandle,
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
         		reader.getCellData(sheetName, privatekeys, 7), business_role_Administrator, null, "test details", null);
 		
 		Assert.assertEquals(response.getStatusCode(), 403);
@@ -248,8 +275,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", null);		
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", null);		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
 		Assert.assertEquals(((BaseResponse) response.getData()).getStatus(),statusFalse);
@@ -264,8 +291,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)0);
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)0);
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -282,8 +309,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)1);
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)1);
 		
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
@@ -302,13 +329,13 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)1);
+        ApiResponse response = api.linkBusinessMember(handle24, reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)1);
 		
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "beneficial_owner");
-	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_22+" for business "+businessEntityName+".");   
+	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_24+" for business "+businessEntityName+".");   
 
 
 }
@@ -322,8 +349,8 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 3), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)101);
+        ApiResponse response = api.linkBusinessMember(handle24,reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)101);
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -334,14 +361,14 @@ public class Link_business_member extends Base_class {
 	
 	
 	@Test(priority = 18)
-	@Description("Link business member with ownershipStake as negative ")
+	@Description("Link business member with ownershipStake as negative")
 	public void test_18_Link_business_memeber_with_ownershipStake_as_negative() throws Exception {
 		
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 3), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "test details", (float)-2);
+        ApiResponse response = api.linkBusinessMember(handle24,reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "test details", (float)-2);
 		
 		Assert.assertEquals(response.getStatusCode(), 400);
 		Assert.assertEquals(response.getSuccess(), successFalse);
@@ -358,13 +385,13 @@ public class Link_business_member extends Base_class {
 		ApiResponse businessRolesResponse = api.getBusinessRoles();
 		BusinessRole business_role_beneficial_owner= ((GetBusinessRolesResponse)businessRolesResponse.getData()).getBusinessRoles().get(1);	
 
-        ApiResponse response = api.linkBusinessMember(handle22,reader.getCellData(sheetName, privatekeys, 2), businessHandle,
-        		reader.getCellData(sheetName, privatekeys, 41),business_role_beneficial_owner, null, "", (float)0.66);
+        ApiResponse response = api.linkBusinessMember(handle24 ,reader.getCellData(sheetName, privatekeys, 4), businessHandle_2,
+        		reader.getCellData(sheetName, privatekeys, 42),business_role_beneficial_owner, null, "", (float)0.66);
 		
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getSuccess(), successTrue);
 	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getRole(), "beneficial_owner");
-	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_22+" for business "+businessEntityName+".");   
+	    Assert.assertEquals(((LinkBusinessMemberResponse)response.getData()).getMessage(), "Business role \"Beneficial Owner\" has already been assigned to member "+Handle_24+" for business "+businessEntityName+".");   
 
 
 	}
