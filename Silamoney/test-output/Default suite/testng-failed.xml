@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="sila_test_cases.Test31_Transfer_sila">
+      <class name="sila_test_cases.Test33_Redeem_sila">
         <methods>
           <include name="EndClass"/>
           <include name="TearUp"/>
           <include name="StartClass"/>
-          <include name="test_05_transfer_sila_with_empty_descriptor_field"/>
+          <include name="test_011_redeem_sila_with_unregistered_user_handle"/>
           <include name="StartTest"/>
           <include name="TearDown"/>
           <include name="Endtest"/>
         </methods>
-      </class> <!-- sila_test_cases.Test31_Transfer_sila -->
+      </class> <!-- sila_test_cases.Test33_Redeem_sila -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

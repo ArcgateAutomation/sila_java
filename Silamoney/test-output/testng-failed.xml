@@ -73,6 +73,18 @@
           <include name="Endtest"/>
         </methods>
       </class> <!-- sila_test_cases.Test13_Register_update_registration_data -->
+      <class name="sila_test_cases.Test33_Redeem_sila">
+        <methods>
+          <include name="EndClass"/>
+          <include name="TearUp"/>
+          <include name="test_08_redeem_sila_with_empty_descriptor_field"/>
+          <include name="StartClass"/>
+          <include name="test_04redeem_sila_zero_amount"/>
+          <include name="StartTest"/>
+          <include name="TearDown"/>
+          <include name="Endtest"/>
+        </methods>
+      </class> <!-- sila_test_cases.Test33_Redeem_sila -->
       <class name="sila_test_cases.Test30_Issue_sila">
         <methods>
           <include name="EndClass"/>

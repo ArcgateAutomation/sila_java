@@ -48,6 +48,7 @@
 			<class name="sila_test_cases.Test30_Issue_sila"/> 
 			<class name="sila_test_cases.Test31_Cancel_transaction"/>
 			<class name="sila_test_cases.Test32_Transfer_sila"/> 
+			<class name="sila_test_cases.Test33_Redeem_sila"/> 
 			
 
 		</classes>
